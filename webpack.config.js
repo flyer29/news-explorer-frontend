@@ -1,103 +1,110 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
-const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const cssNano = require('cssnano');
-
-const isDev = process.env.NODE_ENV === 'development';
+const cssnano = require('cssnano');
 
 module.exports = {
   entry: {
-    main: './src/main/index.js',
-    articles: './src/articles/index.js',
+    main: './src/pages/main/index.js',
+    articles: './src/pages/articles/index.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js',
+    filename: '[name]/[name].[chunkhash].js',
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          plugins: ['transform-class-properties'],
-        },
-      },
-      exclude: /node_modules/,
-    },
-    {
-      test: /\.css$/,
-      use: [(isDev ? 'style-loader' : MiniCssExtractPlugin.loader), {
-        loader: 'css-loader',
-        options: {
-          importLoaders: 2,
-        },
-      }, 'postcss-loader'],
-    },
-    {
-      test: /\.(png|jpg|gif|ico|svg)$/,
-      use: [
-        'file-loader?name=./images/[name].[ext]',
-        {
-          loader: 'image-webpack-loader',
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
           options: {
-            mozjpeg: {
-              progressive: true,
-              quality: 65,
-            },
-            optipng: {
-              enabled: true,
-            },
-            pngquant: {
-              quality: [0.65, 0.90],
-              speed: 4,
-            },
-            gifsicle: {
-              interlaced: true,
-            },
-            webp: {
-              quality: 75,
-            },
-            bypassOnDebug: true,
+            presets: [
+              {
+                plugins: ['transform-class-properties'],
+              },
+            ],
           },
         },
-      ],
-    },
-    {
-      test: /\.(eot|ttf|woff|woff2)$/,
-      loader: 'file-loader?name=./vendor/[name].[ext]',
-    },
+      },
+      {
+        test: /\.css$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2,
+            },
+          },
+          'postcss-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif|ico|svg)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: './images/[name].[ext]',
+              esModule: false,
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65,
+              },
+              optipng: {
+                enabled: false,
+              },
+              pngquant: {
+                quality: [0.65, 0.9],
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(eot|ttf|woff|woff2)$/,
+        loader: 'file-loader?name=./vendor/[name].[ext]&publicPath=../',
+      },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css',
+      filename: '[name]/[name].[contenthash].css',
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
-      cssProcessor: cssNano,
+      cssProcessor: cssnano,
       cssProcessorPluginOptions: {
         preset: ['default'],
       },
       canPrint: true,
     }),
     new HtmlWebpackPlugin({
-      // Означает, что:
-      inject: false, // стили НЕ нужно прописывать внутри тегов
-      template: './src/articles/index.html', // откуда брать образец для сравнения с текущим видом проекта
-      filename: 'articles.html', // имя выходного файла, то есть того, что окажется в папке dist после сборки
+      inject: false,
+      template: './src/pages/main/index.html',
+      filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/main/index.html',
-      filename: 'main.html',
+      template: './src/pages/articles/index.html',
+      filename: 'articles/index.html',
     }),
     new WebpackMd5Hash(),
-    new webpack.DefinePlugin({
-      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-    }),
   ],
 };
