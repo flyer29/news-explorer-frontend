@@ -33,13 +33,13 @@ module.exports = {
       {
         test: /\.css$/i,
         use: [
-          MiniCssExtractPlugin.loader,
           {
-            loader: 'css-loader',
+            loader: MiniCssExtractPlugin.loader,
             options: {
-              importLoaders: 2,
+              publicPath: '../',
             },
           },
+          'css-loader',
           'postcss-loader',
         ],
       },
@@ -50,6 +50,7 @@ module.exports = {
             loader: 'file-loader',
             options: {
               name: './images/[name].[ext]',
+              // publicPath: '../',
               esModule: false,
             },
           },
@@ -97,13 +98,13 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/pages/main/index.html',
+      template: 'src/index.html',
       filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/pages/articles/index.html',
-      filename: 'articles/index.html',
+      template: 'src/articles.html',
+      filename: 'articles.html',
     }),
     new WebpackMd5Hash(),
   ],

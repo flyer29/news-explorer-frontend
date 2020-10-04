@@ -1,3 +1,9 @@
+@import url('../../blocks/header/header.css');
+@import url('../../blocks/search/search.css');
+@import url('../../blocks/about/about.css');
+@import url('../../blocks/footer/footer.css');
+
+
 body {
   margin: 0;
 }
@@ -10,21 +16,4 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #33ecff;
-}
-
-.title {
-  font-size: 70px;
-  font-weight: 700;
-  color: #000;
-}
-
-.button {
-  border: 2px solid green;
-  background-color: red;
-  font-size: 20px;
-}
-
-.back {
-  color: orange;
 }
