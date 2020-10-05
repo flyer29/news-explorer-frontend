@@ -1,0 +1,6 @@
+.underline {
+  width: 100%;
+  height: 2px;
+  /* color: rgba(255, 255, 255, 0.01); */
+  color: red;
+}

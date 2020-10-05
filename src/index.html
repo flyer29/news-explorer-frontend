@@ -4,38 +4,42 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>News exlorer</title>
-  <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+  <title>NewsExplorer</title>
+  <link rel="icon" href="<%=htmlWebpackPlugin.files.ico %>" type="image/x-icon">
 	<link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css[0] %>">
 </head>
 
 <body>
 	<div class="page">
-    <header class="header">
-      <p class="header__title">NewsExplorer</p>
-      <nav class="header__nav">
-        <ul class="header__nav-list">
-          <li class="header__nav-list-item">
-            <a class="header__link" href="#">главная</a>
-          </li>
-          <li class="header__nav-list-item">
-            <a class="header__link" href="#">регистрация</a>
-          </li>
-          <li class="header__nav-list-item">
-            <a class="header__link" href="#">грета</a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-    <div class="search">
-      <h1 class="page-title">что в мире творится?</h1>
-      <p class="page-subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
-      </p>
-      <form class="page-search-field">
-        <input type="text" placeholder="Введите тему новости">
-        <button class="search-button" type="submit">искать</button>
-      </form>
+    <div class="wrapper">
+      <header class="header">
+        <p class="header__title">NewsExplorer</p>
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-list-item header__nav-list-item_active">
+              <a class="header__link header__link_type_active" href="#">Главная</a>
+            </li>
+            <li class="header__nav-list-item">
+              <a class="header__link header__link_type_passive" href="#">Сохранённые статьи</a>
+            </li>
+          </ul>
+          <a class="logout logout_type_main" href="#">
+            <p class="logout__title">грета</p>
+            <img class="logout__picture" src="<%=require('./images/logout.svg')%>" alt="">
+          </a>
+        </nav>
+      </header>
+      <div class="search">
+        <h1 class="page-title">что в мире творится?</h1>
+        <p class="page-subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
+        </p>
+        <form class="page-search-field">
+          <input type="text" placeholder="Введите тему новости">
+          <button class="search-button" type="submit">искать</button>
+        </form>
+      </div>
     </div>
+
     <section class="about">
       <div class="about-container">
         <img class="avatart" src="#" alt="Фотография автора">

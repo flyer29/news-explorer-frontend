@@ -1,0 +1,22 @@
+@import url('__title/logout__title.css');
+@import url('__picture/logout__picture.css');
+@import url('_type_main/logout_type_main.css');
+@import url('_type_articles/logout_type_articles.css');
+
+.logout {
+  font-family: Roboto, Arial, sans-serif;
+  display: flex;
+  font-size: 18px;
+  text-transform: capitalize;
+  text-decoration: none;
+  min-width: 112px;
+  height: 48px;
+  border: 1px solid;
+  border-radius: 100px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 35px;
+  box-sizing: border-box;
+}

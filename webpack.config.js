@@ -44,13 +44,12 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|gif|ico|svg)$/,
+        test: /\.(gif|png|jpe?g|svg|ico|webp)$/i,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: './images/[name].[ext]',
-              // publicPath: '../',
               esModule: false,
             },
           },
@@ -100,6 +99,7 @@ module.exports = {
       inject: false,
       template: 'src/index.html',
       filename: 'index.html',
+      favicon: 'src/images/favicon.ico',
     }),
     new HtmlWebpackPlugin({
       inject: false,

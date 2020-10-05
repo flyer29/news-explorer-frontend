@@ -3,3 +3,15 @@
 @import url('./__nav-list/header__nav-list.css');
 @import url('./__nav-list-item/header__nav-list-item.css');
 @import url('./__title/header__title.css');
+
+  .header {
+    font-family: Roboto, Arial, sans-serif;
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    box-sizing: border-box;
+    padding: 0 105px;
+}
