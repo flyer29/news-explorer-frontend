@@ -1,2 +1,2 @@
 import './index.css';
-import '../../images/favicon.ico';
+// import '../../images/favicon.ico';

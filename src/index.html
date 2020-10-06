@@ -2,15 +2,15 @@
 <html lang="ru">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NewsExplorer</title>
-  <link rel="icon" href="<%=htmlWebpackPlugin.files.ico %>" type="image/x-icon">
-	<link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css[0] %>">
+  <link rel="icon" href="<%=require('./images/favicon.ico') %>">
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css[0] %>">
 </head>
 
 <body>
-	<div class="page">
+  <div class="page">
     <div class="wrapper">
       <header class="header">
         <p class="header__title">NewsExplorer</p>
@@ -29,27 +29,30 @@
           </a>
         </nav>
       </header>
-       <div class="line"></div>
+      <div class="line"></div>
       <section class="search">
-        <h1 class="page-title">что в мире творится?</h1>
-        <p class="page-subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
-        </p>
-        <form class="page-search-field">
-          <input type="text" placeholder="Введите тему новости">
-          <button class="search-button" type="submit">искать</button>
-        </form>
+        <div class="search__container">
+          <h1 class="search__title">Что в мире творится?</h1>
+          <p class="search__subtitle">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
+          </p>
+          <form class="search__form">
+            <input class="search__input" type="text" placeholder="Введите тему новости">
+            <button class="search__button" type="submit">искать</button>
+          </form>
+        </div>
       </section>
     </div>
-
     <section class="about">
-      <div class="about-container">
-        <img class="avatart" src="#" alt="Фотография автора">
-        <div class="description">
-          <h2 class="description_title">обо мне</h2>
-          <p class="description_text">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.
-            Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь потенциальным заказчикам.
-          </p>
-        </div>
+      <picture class="about__avatar">
+        <img src="<%=require('./images/author.png')%>" alt="фотография молодой девушки в солнечных очках">
+      </picture>
+      <div class="about__description">
+        <h2 class="about__title">Oб авторе</h2>
+        <p class="about__text">Это блок с описанием автора проекта. Здесь следует указать, как вас зовут,
+          чем вы занимаетесь, какими технологиями разработки владеете.
+        </p>
+        <p class="about__text">Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились, и чем можете помочь
+          потенциальным заказчикам.</p>
       </div>
     </section>
     <footer class="page-footer">
@@ -79,4 +82,3 @@
 </body>
 
 </html>
-

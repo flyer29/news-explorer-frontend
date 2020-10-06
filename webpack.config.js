@@ -1,9 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const cssnano = require('cssnano');
+
+// const isDev = process.env.NODE_ENV === 'development';
 
 module.exports = {
   entry: {
@@ -99,7 +102,6 @@ module.exports = {
       inject: false,
       template: 'src/index.html',
       filename: 'index.html',
-      favicon: 'src/images/favicon.ico',
     }),
     new HtmlWebpackPlugin({
       inject: false,
@@ -107,5 +109,8 @@ module.exports = {
       filename: 'articles.html',
     }),
     new WebpackMd5Hash(),
+    new webpack.DefinePlugin({
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+    }),
   ],
 };

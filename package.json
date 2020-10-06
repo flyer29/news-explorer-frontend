@@ -4,9 +4,9 @@
   "description": "frontend of diploma-project",
   "main": "src/pages/main/index.js",
   "scripts": {
-    "start": "rimraf dist && webpack --mode production",
-    "dev": "webpack-dev-server --mode development --open --watch",
-    "deploy": "gh-pages -d dist"
+    "start": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
+    "deploy": "cross-env NODE_ENV=production gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -40,7 +40,8 @@
     "webpack": "4.43.0",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.0",
-    "webpack-md5-hash": "0.0.6"
+    "webpack-md5-hash": "0.0.6",
+    "cross-env": "7.0.2"
   },
   "dependencies": {
     "babel-polyfill": "6.26.0",

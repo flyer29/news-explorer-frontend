@@ -6,8 +6,6 @@
 @import url('../../blocks/wrapper/wrapper.css');
 @import url('../../blocks/line/line.css');
 
-
-
 body {
   margin: 0;
 }
@@ -15,10 +13,10 @@ body {
 .page {
   background-color: #eee;
   width: 100%;
-    font-family: Roboto, Arial, sans-serif;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  font-family: Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
