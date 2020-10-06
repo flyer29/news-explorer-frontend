@@ -5,6 +5,7 @@
 @import url('../../blocks/logout/logout.css');
 @import url('../../blocks/wrapper/wrapper.css');
 @import url('../../blocks/line/line.css');
+@import url('../../blocks/footer/footer.css');
 
 body {
   margin: 0;

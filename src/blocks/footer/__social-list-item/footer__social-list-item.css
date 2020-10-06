@@ -1,0 +1,7 @@
+.footer__social-list-item {
+  margin-right: 24px;
+}
+
+.footer__social-list-item:last-child {
+  margin: 0;
+}

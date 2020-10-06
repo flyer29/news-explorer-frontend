@@ -5,8 +5,10 @@
 
 .about {
   background-color: #fff;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   padding: 80px 104px;
+  box-sizing: border-box;
 }
