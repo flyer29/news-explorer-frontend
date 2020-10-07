@@ -1,19 +1,19 @@
-.button_type_logout {
+.button_logout_articles {
   min-width: 112px;
   height: 48px;
-  border: 1px solid #fff;
-  color: #fff;
+  border: 1px solid #1a1b22;
+  color: #1a1b22;
   padding: 0 15px;
   text-transform: capitalize;
 }
 
-.button_type_logout::after {
+.button_logout_articles::after {
   content: '';
   display: inline-block;
   vertical-align: middle;
   width: 24px;
   height: 24px;
-  background-image: url('../../../images/logout.svg');
+  background-image: url('../../../images/logout-dark.svg');
   margin-left: 5px;
   margin-bottom: 2px;
 }

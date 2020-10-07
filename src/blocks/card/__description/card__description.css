@@ -8,4 +8,5 @@
   box-sizing: border-box;
   padding: 20px 24px 24px 24px;
   position: relative;
+  z-index: 2;
 }

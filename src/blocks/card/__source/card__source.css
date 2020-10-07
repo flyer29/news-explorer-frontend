@@ -9,4 +9,5 @@
   position: absolute;
   left: 24px;
   bottom: 24px;
+  z-index: 2;
 }

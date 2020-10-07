@@ -1,10 +1,9 @@
-.search-results__title {
+.articles__message {
   font-family: Roboto Slab, Arial, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 40px;
   color: #1a1b22;
-  margin: 0 0 64px 0;
-  align-self: flex-start;
-  max-width: 700px;
+  margin: 0 0 30px 0;
+  max-width: 530px;
 }

@@ -1,5 +1,6 @@
 @import url('./__title/search-results__title.css');
 @import url('./__container/search-results__container.css');
+@import url('./__container/_type_articles/search-results__container_type_articles.css');
 
 .search-results {
   background-color: #f5f6f7;

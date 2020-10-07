@@ -16,4 +16,5 @@
   color: #fff;
   box-sizing: border-box;
   padding: 0 105px;
+  border-bottom: 1px solid rgba(229, 229, 229, .3);
 }

@@ -6,4 +6,6 @@
   font-size: 26px;
   line-height: 30px;
   margin: 0 0 16px 0;
+  position: relative;
+  z-index: 2;
 }

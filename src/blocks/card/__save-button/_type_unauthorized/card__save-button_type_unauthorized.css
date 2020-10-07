@@ -1,3 +1,8 @@
+.card__save-button_type_unauthorized:hover {
+  background-image: url('../../../../images/bookmark.svg');
+}
+
+
 .card__save-button_type_unauthorized:hover::before {
   content: 'Войдите, чтобы сохранять статьи';
   box-shadow: 0px 10px 22px rgba(59, 74, 116, .1);
