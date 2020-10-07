@@ -1,10 +1,9 @@
-@import url('_active/header__nav-list-item_active.css');
-
 .header__nav-list-item {
   display: flex;
-  margin-left: 35px;
+  margin-right: 32px;
   height: 100%;
   min-height: 80px;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 }

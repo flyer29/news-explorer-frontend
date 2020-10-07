@@ -2,10 +2,18 @@
 @import url('../../blocks/search/search.css');
 @import url('../../blocks/about/about.css');
 @import url('../../blocks/footer/footer.css');
-@import url('../../blocks/logout/logout.css');
 @import url('../../blocks/wrapper/wrapper.css');
 @import url('../../blocks/line/line.css');
 @import url('../../blocks/footer/footer.css');
+@import url('../../blocks/search-results/search-results.css');
+@import url('../../blocks/card/card.css');
+@import url('../../blocks/button/button.css');
+@import url('../../blocks/button/_type_search/button_type_search.css');
+@import url('../../blocks/button/_type_authorization/button_type_authorization.css');
+@import url('../../blocks/button/_type_logout/button_type_logout.css');
+@import url('../../blocks/button/_type_more/button_type_more.css');
+@import url('../../blocks/not-found/not-found.css');
+@import url('../../blocks/loader/loader.css');
 
 body {
   margin: 0;

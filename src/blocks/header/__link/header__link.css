@@ -1,7 +1,5 @@
-@import url('_type_active/header__link_type_active.css');
-@import url('_type_passive/header__link_type_passive.css');
-
 .header__link {
+  color: #fff;
   text-decoration: none;
   font-style: normal;
   font-weight: 500;

@@ -1,17 +1,19 @@
 @import url('./__link/header__link.css');
+@import url('./__link/_type_passive/header__link_type_passive.css');
 @import url('./__nav/header__nav.css');
 @import url('./__nav-list/header__nav-list.css');
 @import url('./__nav-list-item/header__nav-list-item.css');
+@import url('./__nav-list-item/_active/header__nav-list-item_active.css');
 @import url('./__title/header__title.css');
 
-  .header {
-    font-family: Roboto, Arial, sans-serif;
-    width: 100%;
-    min-height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    box-sizing: border-box;
-    padding: 0 105px;
+.header {
+  font-family: Roboto, Arial, sans-serif;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  box-sizing: border-box;
+  padding: 0 105px;
 }
