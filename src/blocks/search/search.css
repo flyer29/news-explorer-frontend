@@ -11,6 +11,18 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  padding: 80px 0 0 0;
+  padding: 80px 0 16px 0;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 1279px) {
+  .search {
+    padding: 38px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .search {
+    padding: 30px 16px 32px 16px;
+  }
 }

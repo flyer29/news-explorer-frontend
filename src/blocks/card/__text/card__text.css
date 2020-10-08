@@ -9,3 +9,10 @@
   position: relative;
   z-index: 2;
 }
+
+/* @media screen and (max-width: 767px) {
+  .card__text {
+    font-size: 16px;
+    line-height: 22px;
+  }
+} */

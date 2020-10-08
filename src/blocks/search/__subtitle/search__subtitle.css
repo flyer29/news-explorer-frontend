@@ -8,3 +8,10 @@
   color: #fff;
   margin: 0 0 65px 0;
 }
+
+@media screen and (max-width: 767px) {
+  .search__subtitle {
+    width: 100%;
+    margin: 0 0 122px 0;
+  }
+}

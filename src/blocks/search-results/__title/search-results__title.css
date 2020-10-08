@@ -8,3 +8,9 @@
   align-self: flex-start;
   max-width: 700px;
 }
+
+@media screen and (max-width: 1279px) {
+  .search-results__title {
+    margin: 0 0 32px 0;
+  }
+}

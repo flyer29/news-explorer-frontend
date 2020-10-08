@@ -1,7 +1,13 @@
 .search__container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
-  width: 600px;
-}
+/*   padding: 0  156px 0 160px;
+ */}
+
+/* @media screen and (max-width: 767px) {
+  .search__container {
+    padding: 0 16px;
+  }
+} */

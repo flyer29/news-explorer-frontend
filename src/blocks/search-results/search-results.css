@@ -12,3 +12,9 @@
   padding: 80px 104px;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 1279px) {
+  .search-results {
+    padding: 40px;
+  }
+}

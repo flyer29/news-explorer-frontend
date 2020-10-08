@@ -11,6 +11,26 @@
   z-index: 2;
 }
 
-.card__save-button:hover {
+/* .card__save-button:hover {
   background-image: url('../../../images/bookmark-dark.svg');
+}
+ */
+@media screen and (min-width: 1024px) {
+  .card__save-button:hover {
+    background-image: url('../../../images/bookmark-dark.svg');
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .card__save-button {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__save-button {
+    top: 16px;
+    right: 16px;
+  }
 }

@@ -9,3 +9,16 @@
   position: relative;
   z-index: 2;
 }
+
+@media screen and (max-width: 1279px) {
+  .card__title {
+    font-size: 22px;
+    line-height: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__title {
+    line-height: 26px;
+  }
+}

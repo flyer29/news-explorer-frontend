@@ -1,8 +1,31 @@
 .button_search {
   background-color: #2f71e5;
-  width: 168px;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);
+  width: 100%;
   height: 64px;
   color: #fff;
-  transform: translateY(-100%);
-  align-self: flex-end;
+  margin-top: 16px;
+}
+
+.button_search:hover {
+  background-color: #347eff;
+}
+
+.button_search:active {
+  background-color: #2a65cc;
+}
+
+@media screen and (max-width: 1280px) {
+  .button_search {
+    height: 56px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .button_search {
+    width: 168px;
+    transform: translateY(-100%);
+    align-self: flex-end;
+    margin: 0;
+  }
 }
