@@ -17,3 +17,10 @@
   margin-left: 5px;
   margin-bottom: 2px;
 }
+
+@media screen and (max-width: 767px) {
+  .button_logout_articles {
+      min-height: 56px;
+      min-width: 288px;
+  }
+}

@@ -1,4 +1,4 @@
-.button_logout {
+.button_logout_menu {
   min-width: 112px;
   height: 48px;
   border: 1px solid #fff;
@@ -7,7 +7,7 @@
   text-transform: capitalize;
 }
 
-.button_logout::after {
+.button_logout_menu::after {
   content: '';
   display: inline-block;
   vertical-align: middle;
@@ -19,7 +19,7 @@
 }
 
 @media screen and (max-width: 767px) {
-  .button_logout {
+  .button_logout_menu {
       min-height: 56px;
       min-width: 288px;
   }

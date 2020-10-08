@@ -1,0 +1,10 @@
+.header__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #1a1b22;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  border: none;
+  z-index: -1;
+}

@@ -1,3 +1,9 @@
 .header__link_type_passive {
   color: #b6bcbf;
 }
+
+@media screen and (max-width: 767px) {
+  .header__link_type_passive {
+    color: #fff;
+  }
+}

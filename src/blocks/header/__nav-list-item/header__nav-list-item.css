@@ -7,3 +7,9 @@
   align-items: center;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 1023px) {
+  .header__nav-list-item {
+    min-height: 66px;
+  }
+}

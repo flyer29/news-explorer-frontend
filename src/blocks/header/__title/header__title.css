@@ -4,5 +4,13 @@
   font-weight: bold;
   font-size: 20px;
   padding: 0;
-  margin: 0;
+  margin: 0 40px 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .header__title {
+    width: 100%;
+    padding: 16px;
+    border-bottom: 1px solid rgba(229, 229, 229, .3);
+  }
 }

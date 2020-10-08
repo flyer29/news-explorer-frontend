@@ -7,3 +7,13 @@
   padding: 0;
   height: 100%;
 }
+
+@media screen and (max-width: 767px) {
+  .header__nav-list {
+      width: 100%;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-bottom: 22px;
+  }
+}
