@@ -2,6 +2,7 @@
 @import url('__nav/footer__nav.css');
 @import url('__nav-list/footer__nav-list.css');
 @import url('__nav-list/_type_social/footer__nav-list_type_social.css');
+@import url('__nav-list/_type_links/footer__nav-list_type_links.css');
 @import url('__nav-list-item/footer__nav-list-item.css');
 @import url('__social-list-item/footer__social-list-item.css');
 @import url('__link/footer__link.css');
@@ -16,4 +17,18 @@
   min-height: 80px;
   box-sizing: border-box;
   padding: 30px 105px;
+}
+
+@media screen and (max-width: 1279px) {
+  .footer {
+    padding: 20px 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    padding: 20px 14px;
+  }
 }

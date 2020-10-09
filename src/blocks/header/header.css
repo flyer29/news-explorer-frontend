@@ -34,16 +34,6 @@
   }
 }
 
-/* @media screen
- and (min-width: 768px)
- and (max-width: 1023px)
-  {
-  .header {
-    padding: 0 40px;
-    min-height: 66px;
-  }
-}
- */
 @media screen and (max-width: 767px) {
   .header {
       min-height: 56px;

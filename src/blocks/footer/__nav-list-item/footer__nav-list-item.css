@@ -2,3 +2,20 @@
   padding: 0 15px;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 1279px) {
+  .footer__nav-list-item:last-child {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer__nav-list-item {
+    margin-bottom: 36px;
+    padding: 0;
+  }
+
+  .footer__social-list-item:last-child {
+    margin: 0;
+  }
+}

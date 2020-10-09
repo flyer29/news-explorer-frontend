@@ -42,16 +42,16 @@
         </div>
       </section>
     </div>
-    <section class="not-found hidden">
+    <section class="loader">
+      <i class="loader__circle-preloader"></i>
+      <p class="loader__message">Идет поиск новостей...</p>
+    </section>
+    <section class="not-found">
       <img class="not-found__image" src="<%=require('./images/not-found_v1.svg')%>" alt="грустный смайлик">
       <h2 class="not-found__title">Ничего не найдено</h2>
       <p class="not-found__message">
         К сожалению по вашему запросу ничего не найдено.
       </p>
-    </section>
-    <section class="loader hidden">
-      <i class="loader__circle-preloader"></i>
-      <p class="loader__message">Идет поиск новостей...</p>
     </section>
     <section class="search-results">
       <p class="search-results__title">Результаты поиска</p>
@@ -116,9 +116,9 @@
       </blockquote>
     </section>
     <footer class="footer">
-      <p class="footer__copyright">&copy; 2020 Andrey Borodin, Powered by News API</p>
+      <p class="footer__copyright">&copy; 2020 Supersite, Powered by News API</p>
       <nav class="footer__nav">
-        <ul class="footer__nav-list">
+        <ul class="footer__nav-list footer__nav-list_type_links">
           <li class="footer__nav-list-item">
             <a class="footer__link" href="#">главная</a>
           </li>
