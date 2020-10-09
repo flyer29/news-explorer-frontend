@@ -1,0 +1,23 @@
+.popup__link {
+  border: none;
+  font-family: Inter, Arial, sans-serif;;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #2f71e5;
+  padding: 0;
+  margin: 0 auto;
+  background: none;
+  cursor: pointer;
+}
+
+.popup__link::before {
+  content: 'или';
+  font-family: Inter, Arial, sans-serif;;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  position: relative;
+  right: 5px;
+  color: #000;
+}

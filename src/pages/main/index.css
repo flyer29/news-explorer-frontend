@@ -13,8 +13,10 @@
 @import url('../../blocks/button/_search/button_search.css');
 @import url('../../blocks/not-found/not-found.css');
 @import url('../../blocks/loader/loader.css');
-@import url('../../blocks/hidden/hidden.css');
 @import url('../../blocks/show/show.css');
+@import url('../../blocks/popup/popup.css');
+@import url('../../blocks/hidden/hidden.css');
+
 
 body {
   margin: 0;

@@ -146,6 +146,60 @@
         </ul>
       </nav>
     </footer>
+
+    <div class="popup popup_type_login hidden">
+      <div class="popup__content popup__content_type_login">
+        <img class="popup__close" src="<%=require('./images/back-popup.png')%>" alt="">
+        <h3 class="popup__title">Вход</h3>
+        <form id="login" class="popup__form" name="login">
+          <span class="popup__label">Email</span>
+          <input type="text" name="email" class="popup__input"
+            type="text" name="email" pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
+             placeholder="Введите почту">
+          <span id="email-error" class="popup__error">Неправильный формат email</span>
+          <span class="popup__label">Пароль</span>
+          <input type="password" name="password" class="popup__input"
+             placeholder="Введите пароль" min="8">
+          <span id="password-error" class="popup__error"></span>
+          <button type="submit" class="popup__button ">Войти</button>
+          <button class="popup__link" type="button">Зарегистрироваться</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_signup">
+      <div class="popup__content popup__content_type_signup">
+        <img class="popup__close" src="<%=require('./images/back-popup.png')%>" alt="">
+        <h3 class="popup__title">Регистрация</h3>
+        <form id="signup" class="popup__form" name="sighup">
+          <span class="popup__label">Email</span>
+          <input type="text" name="email" class="popup__input"
+            type="text" name="email" pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
+             placeholder="Введите почту">
+          <span id="email-error" class="popup__error">Неправильный формат email</span>
+          <span class="popup__label">Пароль</span>
+          <input type="password" name="password" class="popup__input"
+             placeholder="Введите пароль" min="8">
+          <span id="password-error" class="popup__error"></span>
+          <span class="popup__label">Имя</span>
+          <input type="password" name="name" class="popup__input"
+             placeholder="Введите пароль" min="8">
+          <span id="password-error" class="popup__error"></span>
+          <button type="submit" class="popup__button" disabled>Зарегистрироваться</button>
+          <button class="popup__link" type="button">Войти</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup popup_type_success hidden">
+      <div class="popup__content popup__content_type_success">
+        <img class="popup__close" src="<%=require('./images/back-popup.png')%>" alt="">
+        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+        <button class="popup__link popup__link_type_success" type="button">Войти</button>
+        </form>
+      </div>
+    </div>
+
   </div>
   <script src="<%=htmlWebpackPlugin.files.js[0] %>"></script>
 </body>
