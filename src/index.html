@@ -14,7 +14,7 @@
     <div class="wrapper">
       <header class="header">
         <div class="header__overlay hidden"></div>
-        <button class='header__button'></button>
+        <button type="button" class='header__button'></button>
         <p class="header__title">NewsExplorer</p>
         <nav class="header__nav">
           <ul class="header__nav-list">
@@ -26,6 +26,8 @@
             </li>
           </ul>
           <button class="button button_authorization">авторизоваться</button>
+
+          <!-- чтобы посмотреть как выглядит кнопка на странице, нужно удалить класс "hidden" -->
           <button class="button button_logout hidden">грета</button>
         </nav>
       </header>
@@ -36,7 +38,9 @@
             Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
           </p>
           <form class="search__form">
-            <input class="search__input" type="text" placeholder="Введите тему новости">
+            <input class="search__input" type="text" placeholder="Введите тему новости"
+             pattern="[А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?"
+             minlength="2" maxlength="20">
             <button class="button button_search" type="submit">Искать</button>
           </form>
         </div>
@@ -56,8 +60,8 @@
     <section class="search-results">
       <p class="search-results__title">Результаты поиска</p>
       <div class="search-results__container">
-        <a class="card" href="#" tartge="_blank">
-          <img class="card__image" src="<%=require('./images/first-card.png')%>" alt="">
+        <a class="card" href="https://lenta.ru" target="_blank">
+          <img class="card__image" src="<%=require('./images/first-card.png')%>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Национальное достояние – парки</h2>
@@ -66,12 +70,12 @@
               складываться система национальных парков – охраняемых территорий, где
               и сегодня каждый может приобщиться к природе.
             </blockquote>
-            <cite class="card__source" href="#" tartge="_blank">лента.ру</cite>
+            <cite class="card__source">лента.ру</cite>
           </div>
-          <button class="card__save-button"></button>
+          <button type="button" class="card__save-button"></button>
         </a>
-        <a class="card" href="#" tartge="_blank">
-          <img class="card__image" src="<%=require('./images/second-image.png')%>" alt="">
+        <a class="card" href="https://meduza.io" target="_blank">
+          <img class="card__image" src="<%=require('./images/second-image.png')%>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -79,12 +83,12 @@
               Фотограф отвлеклась от освещения суровой политической реальности Мексики,
               чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
             </blockquote>
-            <cite class="card__source" href="#" tartge="_blank">медуза</cite>
+            <cite class="card__source">медуза</cite>
           </div>
-          <button class="card__save-button card__save-button_type_saved card__save-button_type_unauthorized"></button>
+          <button type="button" class="card__save-button card__save-button_type_saved card__save-button_type_unauthorized"></button>
         </a>
-        <a class="card" href="#" tartge="_blank">
-          <img class="card__image" src="<%=require('./images/third-image.png')%>" alt="">
+        <a class="card" href="https://ria.ru" target="_blank">
+          <img class="card__image" src="<%=require('./images/third-image.png')%>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
@@ -92,12 +96,12 @@
               Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения.
               В этот раз он отправился в Двинско-Пинежскую тайгу, где...
             </blockquote>
-            <cite class="card__source" href="#" tartge="_blank">риа</cite>
+            <cite class="card__source">риа</cite>
           </div>
-          <button class="card__save-button card__save-button_type_unauthorized"></button>
+          <button type="button" class="card__save-button card__save-button_type_unauthorized"></button>
         </a>
       </div>
-      <button class="button button_more">Показать ещё</button>
+      <button type="button" class="button button_more">Показать ещё</button>
     </section>
     <section class="about">
       <picture class="about__avatar">
@@ -120,7 +124,7 @@
       <nav class="footer__nav">
         <ul class="footer__nav-list footer__nav-list_type_links">
           <li class="footer__nav-list-item">
-            <a class="footer__link" href="#">главная</a>
+            <a class="footer__link" href="index.html">главная</a>
           </li>
           <li class="footer__nav-list-item">
             <a class="footer__link" href="https://praktikum.yandex.ru/" target="_blank">
