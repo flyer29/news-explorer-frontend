@@ -6,3 +6,10 @@
   font-size: 40px;
   color: #1a1b22;
 }
+
+@media screen and (max-width: 1279px) {
+  .about__title {
+    font-size: 30px;
+    margin: 0 0 16px 0;
+  }
+}

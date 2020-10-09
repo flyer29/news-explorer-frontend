@@ -18,3 +18,15 @@
   padding: 40px 104px 56px 104px;
   box-sizing: border-box;
 }
+
+@media screen and (max-width: 1279px) {
+  .articles {
+    padding: 24px 40px 32px 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .articles {
+    padding: 8px 16px 32px 16px;
+  }
+}

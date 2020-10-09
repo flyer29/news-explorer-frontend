@@ -12,6 +12,7 @@
 @import url('./__button/header__button.css');
 @import url('./__button/_type_articles/header__button_type_articles.css');
 @import url('./__button/_close/header__button_close.css');
+@import url('./_type_articles/header_type_articles.css');
 
 .header {
   font-family: Roboto, Arial, sans-serif;
@@ -24,14 +25,16 @@
   color: #fff;
   box-sizing: border-box;
   border-bottom: 1px solid rgba(229, 229, 229, .3);
+  padding: 0 105px;
 }
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 1279px) {
   .header {
-    padding: 0 105px;
+    padding: 0 40px;
+    min-height: 66px;
   }
 }
 
-@media screen
+/* @media screen
  and (min-width: 768px)
  and (max-width: 1023px)
   {
@@ -40,7 +43,7 @@
     min-height: 66px;
   }
 }
-
+ */
 @media screen and (max-width: 767px) {
   .header {
       min-height: 56px;
@@ -49,5 +52,6 @@
       align-items: flex-start;
       border: none;
       z-index: 1;
+      padding: 0;
   }
 }

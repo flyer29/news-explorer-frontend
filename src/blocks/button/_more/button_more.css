@@ -6,3 +6,8 @@
   min-width: 288px;
   padding: 0 15px;
 }
+
+.button_more:hover {
+  color: #1a1a22;
+  opacity: .7;
+}

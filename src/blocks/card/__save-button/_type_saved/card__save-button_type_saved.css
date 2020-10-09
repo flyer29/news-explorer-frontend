@@ -1,3 +1,9 @@
 .card__save-button_type_saved {
   background-image: url('../../../../images/bookmark-blue.svg');
 }
+
+@media screen and (min-width: 1024px) {
+  .card__save-button_type_saved:hover {
+    background-image: url('../../../../images/bookmark-dark.svg');
+  }
+}
