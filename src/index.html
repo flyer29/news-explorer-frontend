@@ -59,6 +59,62 @@
         К сожалению по вашему запросу ничего не найдено.
       </p>
     </section>
+
+      <!-- Результаты поиска незарегистрированного пользователя -->
+
+    <section class="search-results">
+      <p class="search-results__title">Результаты поиска</p>
+      <div class="search-results__container">
+        <a class="card" href="https://lenta.ru" target="_blank">
+          <img class="card__image" src="<%=require('./images/first-card.png')%>"
+           alt="иллюстрация к статье">
+          <div class="card__description">
+            <p class="card__date">2 августа, 2019</p>
+            <h2 class="card__title">Национальное достояние – парки</h2>
+            <blockquote class="card__text">
+              В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала
+              складываться система национальных парков – охраняемых территорий, где
+              и сегодня каждый может приобщиться к природе.
+            </blockquote>
+            <cite class="card__source">лента.ру</cite>
+          </div>
+          <div class="card__save-button card__save-button_type_unauthorized"></div>
+        </a>
+        <a class="card" href="https://meduza.io" target="_blank">
+          <img class="card__image" src="<%=require('./images/second-image.png')%>"
+           alt="иллюстрация к статье">
+          <div class="card__description">
+            <p class="card__date">2 августа, 2019</p>
+            <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
+            <blockquote class="card__text">
+              Фотограф отвлеклась от освещения суровой политической реальности Мексики,
+              чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
+            </blockquote>
+            <cite class="card__source">медуза</cite>
+          </div>
+          <div class="card__save-button card__save-button_type_unauthorized"></div>
+        </a>
+        <a class="card" href="https://ria.ru" target="_blank">
+          <img class="card__image" src="<%=require('./images/third-image.png')%>"
+           alt="иллюстрация к статье">
+          <div class="card__description">
+            <p class="card__date">2 августа, 2019</p>
+            <h2 class="card__title">Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
+            <blockquote class="card__text">
+              Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
+               о необходимости их сохранения.
+              В этот раз он отправился в Двинско-Пинежскую тайгу, где...
+            </blockquote>
+            <cite class="card__source">риа</cite>
+          </div>
+          <div class="card__save-button card__save-button_type_unauthorized"></div>
+        </a>
+      </div>
+      <button type="button" class="button button_more">Показать ещё</button>
+    </section>
+
+    <!-- Результаты поиска зарегистрированного пользователя -->
+
     <section class="search-results">
       <p class="search-results__title">Результаты поиска</p>
       <div class="search-results__container">
@@ -89,7 +145,7 @@
             </blockquote>
             <cite class="card__source">медуза</cite>
           </div>
-          <div class="card__save-button card__save-button_type_saved card__save-button_type_unauthorized"></div>
+          <div class="card__save-button card__save-button_type_saved"></div>
         </a>
         <a class="card" href="https://ria.ru" target="_blank">
           <img class="card__image" src="<%=require('./images/third-image.png')%>"
@@ -104,11 +160,13 @@
             </blockquote>
             <cite class="card__source">риа</cite>
           </div>
-          <div class="card__save-button card__save-button_type_unauthorized"></div>
+          <div class="card__save-button"></div>
         </a>
       </div>
       <button type="button" class="button button_more">Показать ещё</button>
     </section>
+
+
     <section class="about">
       <picture class="about__avatar">
         <img class="about__image" src="<%=require('./images/author.png')%>"
