@@ -15,6 +15,7 @@ const signUpPopupCloseButton = signUpPopup.querySelector('.popup__close');
 const enterButton = signUpPopup.querySelector('.popup__link');
 const successPopup = document.querySelector('.popup_type_success');
 const successPopupEnterButton = successPopup.querySelector('.popup__link');
+const successPopupClose = successPopup.querySelector('.popup__close');
 const signUpMainButton = signUpPopup.querySelector('.popup__button');
 
 
@@ -50,6 +51,9 @@ const showSuccessPopup = () => {
   successPopupEnterButton.addEventListener('click', () => {
     successPopup.classList.add('hidden');
     showLoginPopup();
+  });
+  successPopupClose.addEventListener('click', () => {
+    successPopup.classList.add('hidden');
   });
 };
 
