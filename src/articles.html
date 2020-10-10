@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News exlorer</title>
-  <link rel="icon" href="<%=require('./images/favicon.ico') %>">
-  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css[1] %>">
+  <link rel="icon" href="<%=require('./images/favicon.ico')%>">
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css[1]%>">
 </head>
 
 <body>
@@ -21,7 +21,9 @@
             <a class="header__link header__link_type_articles" href="./index.html">Главная</a>
           </li>
           <li class="header__nav-list-item header__nav-list-item_active_articles">
-            <a class="header__link header__link_type_articles" href="articles.html">Сохранённые статьи</a>
+            <a class="header__link header__link_type_articles" href="articles.html">
+              Сохранённые статьи
+            </a>
           </li>
         </ul>
         <button type="button" class="button button_logout_articles">грета</button>
@@ -30,8 +32,8 @@
     <section class="articles">
       <h1 class="articles__title">Сохранённые статьи</h1>
       <p class="articles__message">
-        <span class="articles__user-name">Грета<span>, у вас
-            <span class="articles__amount">5</span> сохранённых статей
+        <span class="articles__user-name">Грета</span>, у вас
+        <span class="articles__amount">5</span> сохранённых статей
       </p>
       <p class="articles__keyword-message">По ключевым словам:
         <span class="articles__keywords">Природа, Тайга</span> и
@@ -41,7 +43,8 @@
     <section class="search-results">
       <div class="search-results__container search-results__container_type_articles">
         <a class="card" href="https://zen.yandex.ru/" target="_blank">
-          <img class="card__image" src="<%=require('./images/leaf.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/leaf.png')%>"
+           alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Национальное достояние – парки</h2>
@@ -52,11 +55,12 @@
             </blockquote>
             <cite class="card__source">дзен</cite>
           </div>
-          <button type="button" class="card__trash-button"></button>
+          <div class="card__trash-button"></div>
           <i class="card__keyword">природа</i>
         </a>
         <a class="card" href="https://www.afisha.ru/" target="_blank">
-          <img class="card__image" src="<%=require('./images/terrain.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/terrain.png')%>"
+           alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -66,25 +70,28 @@
             </blockquote>
             <cite class="card__source">афиша</cite>
           </div>
-          <button type="button" class="card__trash-button"></button>
+          <div class="card__trash-button"></div>
           <i class="card__keyword">природа</i>
         </a>
         <a class="card" href="https://zona.media/" target="_blank">
-          <img class="card__image" src="<%=require('./images/glass.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/glass.png')%>"
+           alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
             <blockquote class="card__text">
-              Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения.
+              Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
+               о необходимости их сохранения.
               В этот раз он отправился в Двинско-Пинежскую тайгу, где...
             </blockquote>
             <cite class="card__source">медиазона</cite>
           </div>
-          <button type="button"class="card__trash-button"></button>
+          <div class="card__trash-button"></div>
           <i class="card__keyword">тайга</i>
         </a>
         <a class="card" href="https://zen.yandex.ru/" target="_blank">
-          <img class="card__image" src="<%=require('./images/leaf.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/leaf.png')%>"
+           alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Национальное достояние – парки</h2>
@@ -95,11 +102,12 @@
             </blockquote>
             <cite class="card__source">дзен</cite>
           </div>
-          <button type="button" class="card__trash-button"></button>
+          <div class="card__trash-button"></div>
           <i class="card__keyword">парки</i>
         </a>
         <a class="card" href="https://www.afisha.ru/" target="_blank">
-          <img class="card__image" src="<%=require('./images/terrain.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/terrain.png')%>"
+           alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -109,7 +117,7 @@
             </blockquote>
             <cite class="card__source">афиша</cite>
           </div>
-          <button type="button" class="card__trash-button"></button>
+          <div class="card__trash-button"></div>
           <i class="card__keyword">фотография</i>
         </a>
       </div>
@@ -142,7 +150,7 @@
       </nav>
     </footer>
   </div>
-  <script src="<%=htmlWebpackPlugin.files.js[1] %>"></script>
+  <script src="<%=htmlWebpackPlugin.files.js[1]%>"></script>
 </body>
 
 </html>
