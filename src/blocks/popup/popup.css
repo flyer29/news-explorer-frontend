@@ -22,5 +22,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
   /* display: none; */
+}
+
+@media screen and (max-width: 540px) {
+  .popup {
+    overflow-y: hidden;
+  }
 }

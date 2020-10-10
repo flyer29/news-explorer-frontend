@@ -51,7 +51,7 @@
       <p class="loader__message">Идет поиск новостей...</p>
     </section>
     <section class="not-found">
-      <img class="not-found__image" src="<%=require('./images/not-found_v1.svg')%>" alt="грустный смайлик">
+      <img class="not-found__image" src="<%=require('./images/not-found_v1.svg') %>" alt="грустный смайлик">
       <h2 class="not-found__title">Ничего не найдено</h2>
       <p class="not-found__message">
         К сожалению по вашему запросу ничего не найдено.
@@ -61,7 +61,7 @@
       <p class="search-results__title">Результаты поиска</p>
       <div class="search-results__container">
         <a class="card" href="https://lenta.ru" target="_blank">
-          <img class="card__image" src="<%=require('./images/first-card.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/first-card.png') %>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Национальное достояние – парки</h2>
@@ -75,7 +75,7 @@
           <button type="button" class="card__save-button"></button>
         </a>
         <a class="card" href="https://meduza.io" target="_blank">
-          <img class="card__image" src="<%=require('./images/second-image.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/second-image.png') %>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -88,7 +88,7 @@
           <button type="button" class="card__save-button card__save-button_type_saved card__save-button_type_unauthorized"></button>
         </a>
         <a class="card" href="https://ria.ru" target="_blank">
-          <img class="card__image" src="<%=require('./images/third-image.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/third-image.png') %>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
@@ -105,7 +105,7 @@
     </section>
     <section class="about">
       <picture class="about__avatar">
-        <img class="about__image" src="<%=require('./images/author.png')%>" alt="фотография молодой девушки в солнечных очках">
+        <img class="about__image" src="<%=require('./images/author.png') %>" alt="фотография молодой девушки в солнечных очках">
       </picture>
       <blockquote class="about__description">
         <h2 class="about__title">Oб авторе</h2>
@@ -135,12 +135,12 @@
         <ul class="footer__nav-list footer__nav-list_type_social">
           <li class="footer__social-list-item">
             <a href="https://github.com/flyer29" target="_blank">
-              <img class="footer__social" src="<%=require('./images/github.svg')%>" alt="">
+              <img class="footer__social" src="<%=require('./images/github.svg') %>" alt="">
             </a>
           </li>
           <li class="footer__social-list-item">
             <a href="https://facebook.com/" target="_blank">
-              <img class="footer__social" src="<%=require('./images/fb.svg')%>" alt="">
+              <img class="footer__social" src="<%=require('./images/fb.svg') %>" alt="">
             </a>
           </li>
         </ul>
@@ -149,18 +149,18 @@
 
     <div class="popup popup_type_login hidden">
       <div class="popup__content popup__content_type_login">
-        <img class="popup__close" src="<%=require('./images/back-popup.png')%>" alt="">
+        <button class="popup__close"></button>
         <h3 class="popup__title">Вход</h3>
-        <form id="login" class="popup__form" name="login">
+        <form class="popup__form" name="login">
           <span class="popup__label">Email</span>
-          <input type="text" name="email" class="popup__input"
-            type="text" name="email" pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
-             placeholder="Введите почту">
-          <span id="email-error" class="popup__error">Неправильный формат email</span>
+          <input name="email" class="popup__input"
+           type="text" pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
+            placeholder="Введите почту">
+          <span class="popup__error">Неправильный формат email</span>
           <span class="popup__label">Пароль</span>
           <input type="password" name="password" class="popup__input"
              placeholder="Введите пароль" min="8">
-          <span id="password-error" class="popup__error"></span>
+          <span class="popup__error"></span>
           <button type="submit" class="popup__button ">Войти</button>
           <button class="popup__link" type="button">Зарегистрироваться</button>
         </form>
@@ -169,22 +169,22 @@
 
     <div class="popup popup_type_signup hidden">
       <div class="popup__content popup__content_type_signup">
-        <img class="popup__close" src="<%=require('./images/back-popup.png')%>" alt="">
+        <button class="popup__close"></button>
         <h3 class="popup__title">Регистрация</h3>
-        <form id="signup" class="popup__form" name="sighup">
+        <form class="popup__form" name="sighup">
           <span class="popup__label">Email</span>
-          <input type="text" name="email" class="popup__input"
-            type="text" name="email" pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
-             placeholder="Введите почту">
-          <span id="email-error" class="popup__error">Неправильный формат email</span>
+          <input class="popup__input" type="text" name="email"
+           pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
+           placeholder="Введите почту">
+          <span class="popup__error">Неправильный формат email</span>
           <span class="popup__label">Пароль</span>
           <input type="password" name="password" class="popup__input"
              placeholder="Введите пароль" min="8">
-          <span id="password-error" class="popup__error"></span>
+          <span class="popup__error"></span>
           <span class="popup__label">Имя</span>
           <input type="password" name="name" class="popup__input"
              placeholder="Введите пароль" min="8">
-          <span id="password-error" class="popup__error"></span>
+          <span class="popup__error"></span>
           <button type="submit" class="popup__button" disabled>Зарегистрироваться</button>
           <button class="popup__link" type="button">Войти</button>
         </form>
@@ -193,7 +193,7 @@
 
     <div class="popup popup_type_success hidden">
       <div class="popup__content popup__content_type_success">
-        <img class="popup__close" src="<%=require('./images/back-popup.png')%>" alt="">
+        <button class="popup__close"></button>
         <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <button class="popup__link popup__link_type_success" type="button">Войти</button>
         </form>
