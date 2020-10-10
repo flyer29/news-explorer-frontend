@@ -13,6 +13,9 @@ const signUpPopup = document.querySelector('.popup_type_signup');
 const loginPopupCloseButton = loginPopup.querySelector('.popup__close');
 const signUpPopupCloseButton = signUpPopup.querySelector('.popup__close');
 const enterButton = signUpPopup.querySelector('.popup__link');
+const successPopup = document.querySelector('.popup_type_success');
+const successPopupEnterButton = successPopup.querySelector('.popup__link');
+const signUpMainButton = signUpPopup.querySelector('.popup__button');
 
 
 headerButton.addEventListener('click', () => {
@@ -41,6 +44,20 @@ const showLoginPopup = () => {
     showSignUpPopup();
   });
 };
+
+const showSuccessPopup = () => {
+  successPopup.classList.remove('hidden');
+  successPopupEnterButton.addEventListener('click', () => {
+    successPopup.classList.add('hidden');
+    showLoginPopup();
+  });
+};
+
+signUpMainButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  signUpPopup.classList.add('hidden');
+  showSuccessPopup();
+});
 
 authorizationButton.addEventListener('click', () => {
   showLoginPopup();

@@ -10,3 +10,7 @@
   cursor: pointer;
   background: none;
 }
+
+.button:disabled:hover {
+  cursor: auto;
+}

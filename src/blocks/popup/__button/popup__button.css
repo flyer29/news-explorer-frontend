@@ -26,3 +26,7 @@
   color: #b6bcbf;
   background-color: #e6e8eb;
 }
+
+.popup__button:disabled:hover {
+  cursor: auto;
+}
