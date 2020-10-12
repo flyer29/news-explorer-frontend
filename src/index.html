@@ -41,7 +41,7 @@
           </p>
           <form class="search__form">
             <input class="search__input" type="text" placeholder="Введите тему новости"
-              pattern="[А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?" minlength="2" maxlength="20">
+              pattern="[А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?" minlength="2" maxlength="20" required>
             <button class="button button_search" type="submit">Искать</button>
           </form>
         </div>
@@ -164,10 +164,10 @@
           <span class="popup__label">Email</span>
           <input name="email" class="popup__input" type="text"
             pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
-            placeholder="Введите почту">
+            placeholder="Введите почту" required>
           <span class="popup__error">Неправильный формат email</span>
           <span class="popup__label">Пароль</span>
-          <input type="password" name="password" class="popup__input" placeholder="Введите пароль">
+          <input type="password" name="password" class="popup__input" placeholder="Введите пароль" required>
           <span class="popup__error"></span>
           <button type="submit" class="popup__button" disabled>Войти</button>
           <button class="popup__link" type="button">Зарегистрироваться</button>
@@ -183,15 +183,15 @@
           <span class="popup__label">Email</span>
           <input class="popup__input" type="text" name="email"
             pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
-            placeholder="Введите почту">
+            placeholder="Введите почту" required>
           <span class="popup__error">Неправильный формат email</span>
           <span class="popup__label">Пароль</span>
           <input type="password" name="password" class="popup__input"
-           placeholder="Введите пароль">
+           placeholder="Введите пароль" required>
           <span class="popup__error"></span>
           <span class="popup__label">Имя</span>
           <input type="text" name="name" class="popup__input"
-           placeholder="Введите пароль" minlength="8">
+           placeholder="Введите пароль" minlength="8" required>
           <span class="popup__error"></span>
           <button type="submit" class="popup__button">Зарегистрироваться</button>
           <button class="popup__link" type="button">Войти</button>
