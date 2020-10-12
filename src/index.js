@@ -1,4 +1,4 @@
-import './index.css';
+import './pages/main/index.css';
 
 const headerButton = document.querySelector('.header__button');
 const headerTitle = document.querySelector('.header__title');
