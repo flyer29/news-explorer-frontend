@@ -1,0 +1,20 @@
+.about__image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1023px) {
+  .about__image {
+    width: 232px;
+
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .about__image {
+    width: 272px;
+
+
+  }
+}

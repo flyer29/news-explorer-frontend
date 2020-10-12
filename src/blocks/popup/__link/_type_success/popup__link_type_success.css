@@ -1,0 +1,14 @@
+.popup__link_type_success {
+  margin: 0;
+}
+
+.popup__link_type_success::before {
+  content: '';
+  right: 0;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__link_type_success {
+    margin-top: 50px;
+  }
+}

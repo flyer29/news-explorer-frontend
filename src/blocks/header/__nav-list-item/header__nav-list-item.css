@@ -1,0 +1,15 @@
+.header__nav-list-item {
+  display: flex;
+  margin-right: 32px;
+  height: 100%;
+  min-height: 80px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1023px) {
+  .header__nav-list-item {
+    min-height: 66px;
+  }
+}

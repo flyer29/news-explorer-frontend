@@ -1,0 +1,9 @@
+.header__nav-list-item_active {
+  border-bottom: 3px solid #fff;
+}
+
+@media screen and (max-width: 767px) {
+  .header__nav-list-item_active {
+    border: none;
+  }
+}

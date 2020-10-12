@@ -1,0 +1,54 @@
+.card__trash-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background:  #fff url('../../../images/trash.svg') no-repeat 50%;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+@media screen and (max-width: 1279px) {
+  .card__trash-button {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .card__trash-button:hover {
+    background-image: url('../../../images/trash-dark.svg');
+  }
+
+  .card__trash-button:hover::before {
+    content: 'Убрать из сохранённых';
+    box-shadow: 0px 10px 22px rgba(59, 74, 116, .1);
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    border: none;
+    font-family: Roboto, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    right: calc(100% + 5px);
+    box-sizing: content-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 159px;
+    height: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__trash-button {
+    top: 16px;
+    right: 16px;
+  }
+}

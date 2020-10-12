@@ -1,0 +1,9 @@
+.loader__message {
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  color: #b6bcbf;
+  max-width: 280px;
+  margin: 0;
+}

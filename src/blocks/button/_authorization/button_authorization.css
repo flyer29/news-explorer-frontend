@@ -1,0 +1,21 @@
+.button_authorization {
+  min-width: 112px;
+  min-height: 48px;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 0 15px;
+  text-transform: capitalize;
+}
+
+@media screen and (max-width: 1023px) {
+  .button_authorization {
+      min-height: 40px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .button_authorization {
+      min-height: 56px;
+      min-width: 288px;
+  }
+}

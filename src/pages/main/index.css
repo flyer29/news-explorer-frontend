@@ -1,0 +1,38 @@
+/* @import url('../../fonts/inter.css');
+@import url('../../fonts/roboto.css');
+@import url('../../fonts/robotoslab.css'); */
+@import url('../../fonts/fonts.css');
+@import url('../../blocks/header/header.css');
+@import url('../../blocks/search/search.css');
+@import url('../../blocks/about/about.css');
+@import url('../../blocks/footer/footer.css');
+@import url('../../blocks/wrapper/wrapper.css');
+@import url('../../blocks/footer/footer.css');
+@import url('../../blocks/search-results/search-results.css');
+@import url('../../blocks/card/card.css');
+@import url('../../blocks/button/button.css');
+@import url('../../blocks/button/_authorization/button_authorization.css');
+@import url('../../blocks/button/_logout/button_logout.css');
+@import url('../../blocks/button/_more/button_more.css');
+@import url('../../blocks/button/_search/button_search.css');
+@import url('../../blocks/not-found/not-found.css');
+@import url('../../blocks/loader/loader.css');
+@import url('../../blocks/show/show.css');
+@import url('../../blocks/popup/popup.css');
+@import url('../../blocks/hidden/hidden.css');
+
+
+body {
+  margin: 0;
+}
+
+.page {
+  background-color: #eee;
+  width: 100%;
+  font-family: Roboto, Arial, sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,9 @@
+
+
+@media screen and (max-width: 767px) {
+  .footer__nav-list_type_links {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+  }
+}

@@ -1,0 +1,32 @@
+.card__save-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background:  #fff url('../../../images/bookmark-shadow.svg') no-repeat 50%;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+}
+
+@media screen and (min-width: 1024px) {
+  .card__save-button:hover {
+    background-image: url('../../../images/bookmark-dark.svg');
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .card__save-button {
+    top: 8px;
+    right: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__save-button {
+    top: 16px;
+    right: 16px;
+  }
+}

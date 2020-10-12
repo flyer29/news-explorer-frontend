@@ -1,0 +1,38 @@
+.card__keyword {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background-color: #fff;
+  color: #000;
+  font-family: Roboto, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  max-width: 110px;
+  min-height: 40px;
+  border-radius: 10px;
+  border: none;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  z-index: 2;
+  cursor: auto;
+}
+
+@media screen and (max-width: 1279px) {
+  .card__keyword {
+    top: 8px;
+    left: 8px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .card__keyword {
+    top: 16px;
+    left: 16px;
+  }
+}

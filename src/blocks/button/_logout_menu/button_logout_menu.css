@@ -1,0 +1,26 @@
+.button_logout_menu {
+  min-width: 112px;
+  height: 48px;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 0 15px;
+  text-transform: capitalize;
+}
+
+.button_logout_menu::after {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  background-image: url('../../../images/logout.svg');
+  margin-left: 5px;
+  margin-bottom: 2px;
+}
+
+@media screen and (max-width: 767px) {
+  .button_logout_menu {
+      min-height: 56px;
+      min-width: 288px;
+  }
+}

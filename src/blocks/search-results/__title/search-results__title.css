@@ -1,0 +1,16 @@
+.search-results__title {
+  font-family: Roboto Slab, Arial, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 40px;
+  color: #1a1b22;
+  margin: 0 0 64px 0;
+  align-self: flex-start;
+  max-width: 700px;
+}
+
+@media screen and (max-width: 1279px) {
+  .search-results__title {
+    margin: 0 0 32px 0;
+  }
+}
