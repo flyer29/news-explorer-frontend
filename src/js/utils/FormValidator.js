@@ -7,14 +7,20 @@ export default class FormValidator {
   }
 
   _checkInputValidity = (input) => {
-    if (input.validity.tooShort || input.validity.tooLong) {
+    if ((input.validity.tooShort || input.validity.tooLong) && input.type === 'text') {
       return 'Должно быть от 2 до 30 символов';
     }
     if (input.validity.valueMissing) {
       return 'Это обязательное поле';
     }
     if (input.type === 'email' && input.validity.typeMismatch) {
-      return 'Здесь должна быть ссылка';
+      return 'Здесь должен быть адрес электронной почты';
+    }
+    if(input.name === 'name' && input.validity.patternMismatch) {
+      return 'Необходимо ввести корректное имя';
+    }
+    if(input.name == 'password' && input.validity.tooShort) {
+      return 'Пароль должен содержать не менее восьми символов';
     }
     return '';
   }

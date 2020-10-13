@@ -158,13 +158,15 @@
         <h3 class="popup__title">Вход</h3>
         <form class="popup__form" name="login">
           <span class="popup__label">Email</span>
-          <input name="email" class="popup__input" type="text"
+          <input name="email" class="popup__input" type="email"
             pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
             placeholder="Введите почту" required>
           <span class="popup__error">Неправильный формат email</span>
           <span class="popup__label">Пароль</span>
-          <input type="password" name="password" class="popup__input" placeholder="Введите пароль" required>
+          <input type="password" name="password" class="popup__input"
+           placeholder="Введите пароль" required minlength="8">
           <span class="popup__error"></span>
+          <span class="popup__api-error"></span>
           <button type="submit" class="popup__button" disabled>Войти</button>
           <button class="popup__link" type="button">Зарегистрироваться</button>
         </form>
@@ -177,18 +179,18 @@
         <h3 class="popup__title">Регистрация</h3>
         <form class="popup__form" name="sighup">
           <span class="popup__label">Email</span>
-          <input class="popup__input" type="text" name="email"
-            pattern="pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
-            placeholder="Введите почту" required>
+          <input class="popup__input" type="email" name="email" placeholder="Введите почту" required>
           <span class="popup__error"></span>
           <span class="popup__label">Пароль</span>
           <input type="password" name="password" class="popup__input"
-           placeholder="Введите пароль" required>
+           placeholder="Введите пароль" required minlength="8">
           <span class="popup__error"></span>
           <span class="popup__label">Имя</span>
           <input type="text" name="name" class="popup__input"
-           placeholder="Введите имя" minlength="8" required>
+          pattern="([А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?)|([A-Z][a-z\s]+?(-[A-Z][a-z\s]+)?)"
+           placeholder="Введите имя" minlength="2" maxlength="30" required>
           <span class="popup__error"></span>
+          <span class="popup__api-error"></span>
           <button type="submit" class="popup__button">Зарегистрироваться</button>
           <button class="popup__link" type="button">Войти</button>
         </form>

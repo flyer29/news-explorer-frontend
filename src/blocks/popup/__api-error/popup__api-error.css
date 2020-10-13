@@ -1,0 +1,7 @@
+.popup__api-error {
+  display: block;
+  align-self: center;
+  font-size: 12px;
+  color: #FF0000;
+  margin-bottom: 8px;
+}
