@@ -1,5 +1,4 @@
 .popup__content_type_success {
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;

@@ -1,9 +1,9 @@
 import Popup from "./Popup.js";
 export default class SignUpPopup extends Popup {
-  constructor(element, validator/* , api */) {
+  constructor(element, validator, api) {
     super(element);
     this.validator = validator;
-    /* this.api = api; */
+    this.api = api;
     this.form = this.element.querySelector('.popup__form');
     this.button = this.element.querySelector('.popup__button');
   }
@@ -30,6 +30,8 @@ export default class SignUpPopup extends Popup {
     this._removeEventListeners();
   }
 
+
+
   /* _loadingFunction = (isLoading) => {
     if (isLoading) {
       this.button.classList.add('popup__button_type_profile');
@@ -43,6 +45,8 @@ export default class SignUpPopup extends Popup {
   _closeByEsc = (event) => {
     super._closeByEsc(event);
   }
+
+
 
   /* _createNewCard = (event) => {
     event.preventDefault();

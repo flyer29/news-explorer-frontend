@@ -50,8 +50,7 @@
       <h2 class="loader__message">Идет поиск новостей...</h2>
     </section>
     <section class="not-found hidden">
-      <img class="not-found__image" src="<%=require('./images/not-found_v1.svg')%>"
-       alt="грустный смайлик">
+      <img class="not-found__image" src="<%=require('./images/not-found_v1.svg')%>" alt="грустный смайлик">
       <h2 class="not-found__title">Ничего не найдено</h2>
       <p class="not-found__message">
         К сожалению по вашему запросу ничего не найдено.
@@ -61,8 +60,7 @@
       <p class="search-results__title">Результаты поиска</p>
       <div class="search-results__container">
         <a class="card" href="https://lenta.ru" target="_blank">
-          <img class="card__image" src="<%=require('./images/first-card.png')%>"
-           alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/first-card.png')%>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Национальное достояние – парки</h2>
@@ -76,8 +74,7 @@
           <div class="card__save-button"></div>
         </a>
         <a class="card" href="https://meduza.io" target="_blank">
-          <img class="card__image" src="<%=require('./images/second-image.png')%>"
-           alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/second-image.png')%>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
@@ -90,14 +87,13 @@
           <div class="card__save-button card__save-button_type_saved"></div>
         </a>
         <a class="card" href="https://ria.ru" target="_blank">
-          <img class="card__image" src="<%=require('./images/third-image.png')%>"
-           alt="иллюстрация к статье">
+          <img class="card__image" src="<%=require('./images/third-image.png')%>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
             <h2 class="card__title">Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
             <blockquote class="card__text">
               Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
-               о необходимости их сохранения.
+              о необходимости их сохранения.
               В этот раз он отправился в Двинско-Пинежскую тайгу, где...
             </blockquote>
             <cite class="card__source">риа</cite>
@@ -120,7 +116,7 @@
         </p>
         <p class="about__text">
           Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились,
-           и чем можете помочь потенциальным заказчикам.
+          и чем можете помочь потенциальным заказчикам.
         </p>
       </blockquote>
     </section>
@@ -151,60 +147,53 @@
         </ul>
       </nav>
     </footer>
-
-    <div class="popup popup_type_login hidden">
-      <div class="popup__content popup__content_type_login">
-        <button class="popup__close"></button>
-        <h3 class="popup__title">Вход</h3>
-        <form class="popup__form" name="login">
-          <span class="popup__label">Email</span>
-          <input name="email" class="popup__input" type="email"
-            pattern="([a-z]+(\w+)?-?([a-z0-9]+)?)+@([a-z0-9]+(-?\w+-?[a-z0-9])?.)+[a-zA-Z]{2,}"
-            placeholder="Введите почту" required>
-          <span class="popup__error">Неправильный формат email</span>
-          <span class="popup__label">Пароль</span>
-          <input type="password" name="password" class="popup__input"
-           placeholder="Введите пароль" required minlength="8">
-          <span class="popup__error"></span>
-          <span class="popup__api-error"></span>
-          <button type="submit" class="popup__button" disabled>Войти</button>
-          <button class="popup__link" type="button">Зарегистрироваться</button>
-        </form>
-      </div>
+    <div class="popup hidden">
+      <div class="popup__content">
+        <h3 class="popup__title">Регистрация</h3>
+        <div class="popup__container"></div>
+      <button class="popup__close"></button>
+      <button class="popup__link" type="button"></button>
+    </div>
     </div>
 
-    <div class="popup popup_type_signup hidden">
-      <div class="popup__content popup__content_type_signup">
-        <button class="popup__close"></button>
-        <h3 class="popup__title">Регистрация</h3>
-        <form class="popup__form" name="sighup">
+
+
+    <template id="signup">
+        <form class="popup__form">
           <span class="popup__label">Email</span>
-          <input class="popup__input" type="email" name="email" placeholder="Введите почту" required>
+          <input class="popup__input" type="email" placeholder="Введите почту" required>
           <span class="popup__error"></span>
           <span class="popup__label">Пароль</span>
-          <input type="password" name="password" class="popup__input"
-           placeholder="Введите пароль" required minlength="8">
+          <input class="popup__input" type="password" placeholder="Введите пароль" minlength="8" required>
           <span class="popup__error"></span>
           <span class="popup__label">Имя</span>
-          <input type="text" name="name" class="popup__input"
-          pattern="([А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?)|([A-Z][a-z\s]+?(-[A-Z][a-z\s]+)?)"
+          <input class="popup__input" name="name" type="text"
+           pattern="([А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?)|([A-Z][a-z\s]+?(-[A-Z][a-z\s]+)?)"
            placeholder="Введите имя" minlength="2" maxlength="30" required>
           <span class="popup__error"></span>
-          <span class="popup__api-error"></span>
-          <button type="submit" class="popup__button">Зарегистрироваться</button>
-          <button class="popup__link" type="button">Войти</button>
+          <button type="submit" class="popup__button signup">Зарегистрироваться</button>
         </form>
-      </div>
-    </div>
+    </template>
 
-    <div class="popup popup_type_success hidden">
+    <template id="login">
+        <form class="popup__form">
+          <span class="popup__label">Email</span>
+          <input class="popup__input" type="email"
+            placeholder="Введите почту" required>
+          <span class="popup__error"></span>
+          <span class="popup__label">Пароль</span>
+          <input class="popup__input" type="password" placeholder="Введите пароль" minlength="8" required>
+          <span class="popup__error"></span>
+          <button class="popup__button login" type="submit">Войти</button>
+        </form>
+    </template>
+
+    <template id="success">
       <div class="popup__content popup__content_type_success">
         <button class="popup__close"></button>
-        <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
         <button class="popup__link popup__link_type_success" type="button">Войти</button>
       </div>
-    </div>
-
+    </template>
   </div>
   <script src="<%=htmlWebpackPlugin.files.js[0]%>"></script>
 </body>
