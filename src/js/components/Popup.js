@@ -1,9 +1,11 @@
 export default class Popup {
-  constructor(element, signUp, login) {
+  constructor(element, signUp, login, api) {
     this.element = element;
     this.title = this.element.querySelector('.popup__title');
+    this.content = this.element.querySelector('.popup__content');
     this.signUp = signUp;
     this.login = login;
+    this.api = api;
     this.container = this.element.querySelector('.popup__container');
     this.signUpForm = signUp.form;
     this.loginForm = login.form;
@@ -32,6 +34,32 @@ export default class Popup {
     }
   }
 
+  sendLoginForm = (event) => {
+    event.preventDefault();
+    this.api.signin(this.login._getInfo())
+    .then((result) => {
+      console.log(result);
+    })
+    .then(() => {
+      this.close();
+    })
+    .catch((err) => {
+      alert(err);
+    });
+  }
+
+  sendSignUpForm = (event) => {
+    event.preventDefault();
+    this.api.signup(this.signUp._getInfo())
+    .then((result) => {
+      console.log(result);
+    })
+    .then(() => this._openSuccessPopup())
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   openMainPopup = () => {
     this._clearContent();
     this.popupLink.removeEventListener('click', this.openMainPopup);
@@ -41,10 +69,20 @@ export default class Popup {
     this.title.textContent = 'Регистрация';
     this.popupLink.textContent = 'Войти';
     this.popupLink.addEventListener('click',this.openSecondPopup);
+    this.signUpForm.addEventListener('submit', this.sendSignUpForm);
     this.open();
   }
 
+  _openSuccessPopup = () => {
+    this._clearContent();
+    this.title.textContent = 'Пользователь успешно зарегистрирован!';
+    this.popupLink.classList.add('popup__link_type_success');
+  }
+
   openSecondPopup = () => {
+    if (this.popupLink.classList.contains('popup__link_type_success')) {
+      this.popupLink.classList.remove('popup__link_type_success');
+    };
     this._clearContent();
     this.popupLink.removeEventListener('click', this.openSecondPopup);
     this._setContent(this.login.form);
@@ -53,6 +91,7 @@ export default class Popup {
     this.title.textContent = 'Вход';
     this.popupLink.textContent = 'Зарегистрироваться';
     this.popupLink.addEventListener('click',this.openMainPopup);
+    this.loginForm.addEventListener('submit', this.sendLoginForm);
     this.open();
   }
 

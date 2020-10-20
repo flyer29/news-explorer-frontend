@@ -9,17 +9,19 @@ import MainApi from './js/api/MainApi';
   const authorizationButton = document.querySelector('.button_authorization');
   const loginPopupTemplate = document.querySelector('#login');
   const signUpPopupTemplate = document.querySelector('#signup');
-  const login = new Form(loginPopupTemplate);
-  const signUp = new Form(signUpPopupTemplate);
-  const SignUpPopup = new Popup(root, signUp, login);
 
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
   const config = {
-    baseUrl: `${protocol}://api.mynewsapp.tk`,
+    baseUrl: 'http://localhost:3000',
     headers: {
-      'Content-Type': 'application/jso',
+      'Content-Type': 'application/json',
     },
   };
+  const authApi = new MainApi(config);
 
+  const login = new Form(loginPopupTemplate);
+  const signUp = new Form(signUpPopupTemplate, authApi);
+  const SignUpPopup = new Popup(root, signUp, login, authApi);
+
+  // const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
   authorizationButton.addEventListener('click', SignUpPopup.openMainPopup);
 }());

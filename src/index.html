@@ -161,30 +161,30 @@
     <template id="signup">
         <form class="popup__form">
           <span class="popup__label">Email</span>
-          <input class="popup__input" type="email" placeholder="Введите почту" required>
+          <input class="popup__input" name="email" type="email" placeholder="Введите почту" required>
           <span class="popup__error"></span>
           <span class="popup__label">Пароль</span>
-          <input class="popup__input" type="password" placeholder="Введите пароль" minlength="8" required>
+          <input class="popup__input" name="password" type="password" placeholder="Введите пароль" minlength="8" required>
           <span class="popup__error"></span>
           <span class="popup__label">Имя</span>
           <input class="popup__input" name="name" type="text"
            pattern="([А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?)|([A-Z][a-z\s]+?(-[A-Z][a-z\s]+)?)"
            placeholder="Введите имя" minlength="2" maxlength="30" required>
           <span class="popup__error"></span>
-          <button type="submit" class="popup__button signup">Зарегистрироваться</button>
+          <button type="submit" class="popup__button signup" name="button">Зарегистрироваться</button>
         </form>
     </template>
 
     <template id="login">
         <form class="popup__form">
           <span class="popup__label">Email</span>
-          <input class="popup__input" type="email"
+          <input class="popup__input" name="email" type="email"
             placeholder="Введите почту" required>
           <span class="popup__error"></span>
           <span class="popup__label">Пароль</span>
-          <input class="popup__input" type="password" placeholder="Введите пароль" minlength="8" required>
+          <input class="popup__input" name="password" type="password" placeholder="Введите пароль" minlength="8" required>
           <span class="popup__error"></span>
-          <button class="popup__button login" type="submit">Войти</button>
+          <button class="popup__button login" name="button" type="submit">Войти</button>
         </form>
     </template>
 

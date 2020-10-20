@@ -1,103 +1,49 @@
-export default class MainApi {
+xport default class MainApi {
   constructor(options) {
     this.options = options;
     this.url = this.options.baseUrl;
     this.headers = this.options.headers;
   }
 
-  _getResponseData(res) {
-    if (res.ok) {
+  getUserData = () => {
+
+  }
+
+  signup = (data) => {
+    return fetch(`${this.url}/signup`, {
+        method: 'POST',
+        headers: this.headers,
+        credentials: 'include',
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        }),
+      })
+      .then((res) => {
+        if (res.ok) {
+        return res.json();
+      }
+      console.log(res);
+      return Promise.reject(`Что-то пошло не так... Код ошибки: ${res.status}`);
+    });
+  }
+
+  signin = (data) => {
+    return fetch(`${this.url}/signin`, {
+      method: 'POST',
+      headers: this.headers,
+      credentials: 'include',
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+      }),
+    })
+    .then((res) => {
+      if (res.ok) {
       return res.json();
     }
     return Promise.reject(`Что-то пошло не так... Код ошибки: ${res.status}`);
+  });
   }
-
-  signup = () => {
-    return fetch(`${this.url}/signup`, {
-      headers: this.headers
-    })
-   .then(this._getResponseData);
-  }
-
-  signin = () => {
-
-  }
-
-
-
-
-
-  /* getUserData = () => {
-    return fetch(`${this.url}/users/me`, {
-        headers: this.headers
-      })
-     .then(this._getResponseData);
-  }
-
-  editUserProfile = (data) => {
-    return fetch(`${this.url}/users/me`, {
-        method: 'PATCH',
-        headers: this.headers,
-        body: JSON.stringify({
-          name: data.name,
-          about: data.about
-        })
-      })
-      .then(this._getResponseData);
-  }
-
-  editUserAvatar = (data) => {
-    return fetch(`${this.url}/users/me/avatar`, {
-        method: 'PATCH',
-        headers: this.headers,
-        body: JSON.stringify({
-          avatar: data.avatar
-        })
-      })
-      .then(this._getResponseData);
-  }
-
-  getInitialCards = () => {
-    return fetch(`${this.url}/cards`, {
-        headers: this.headers
-      })
-      .then(this._getResponseData);
-  }
-
-  addNewCard = (data) => {
-    return fetch(`${this.url}/cards`, {
-        method: 'POST',
-        headers: this.headers,
-        body: JSON.stringify({
-          name: data.name,
-          link: data.link,
-        })
-      })
-      .then(this._getResponseData);
-  }
-
-  deleteCard = (id) => {
-    return fetch(`${this.url}/cards/${id}`, {
-        method: 'DELETE',
-        headers: this.headers
-      })
-      .then(this._getResponseData);
-  }
-
-  setLike = (id) => {
-    return fetch(`${this.url}/cards/like/${id}`, {
-        method: 'PUT',
-        headers: this.headers
-      })
-      .then(this._getResponseData);
-  }
-
-  removeLike = (id) => {
-    return fetch(`${this.url}/cards/like/${id}`, {
-        method: 'DELETE',
-        headers: this.headers
-      })
-      .then(this._getResponseData);
-  }
-} */
 }

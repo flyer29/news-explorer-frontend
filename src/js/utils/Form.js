@@ -1,6 +1,7 @@
 export default class Form {
-  constructor(template) {
+  constructor(template, api) {
     this.template = template;
+    this.api = api;
     this.form = template.content.querySelector('.popup__form').cloneNode(true);
     this.button = this.form.querySelector('.popup__button');
     this.inputs = Array.from(this.form.querySelectorAll('input'));
@@ -47,6 +48,20 @@ export default class Form {
     });
   }
 
+  setServerError = () => {
+
+  }
+
+  _getInfo = () => {
+    const data = {};
+    this.form.elements.forEach((item) => {
+      if (item.name !== 'button') {
+         data[item.name] = item.value;
+       };
+    });
+    return data;
+  }
+
   clear = () => {
     this.form.reset();
     this.form.querySelectorAll('.popup__error').forEach((item) => {
@@ -64,5 +79,6 @@ export default class Form {
       item.addEventListener('input', this._showMessage);
     });
     this.form.addEventListener('input', this._validateForm);
+    this.form.addEventListener('submit', this.signUp);
   }
 }
