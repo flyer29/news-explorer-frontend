@@ -1,6 +1,7 @@
 export default class Popup {
-  constructor(element, signUp, login, api) {
+  constructor(element, signUp, login, api, header) {
     this.element = element;
+    this.header = header;
     this.title = this.element.querySelector('.popup__title');
     this.content = this.element.querySelector('.popup__content');
     this.signUp = signUp;
@@ -9,6 +10,7 @@ export default class Popup {
     this.container = this.element.querySelector('.popup__container');
     this.signUpForm = signUp.form;
     this.loginForm = login.form;
+    this.formError =
     this.closeButton = this.element.querySelector('.popup__close');
     this.popupLink = this.element.querySelector('.popup__link');
     this._closeByEsc = this._closeByEsc.bind(this);
@@ -37,23 +39,25 @@ export default class Popup {
   sendLoginForm = (event) => {
     event.preventDefault();
     this.api.signin(this.login._getInfo())
-    .then((result) => {
-      console.log(result);
+    .then((res) => {
+      localStorage.setItem('user', `${JSON.stringify(res)}`)
+      const props = {
+        isLoggedIn: true,
+        userName: JSON.parse(localStorage.getItem('user')).name,
+        }
+      this.header.render(props);
     })
     .then(() => {
       this.close();
     })
     .catch((err) => {
-      alert(err);
+      console.log(err);
     });
   }
 
   sendSignUpForm = (event) => {
     event.preventDefault();
     this.api.signup(this.signUp._getInfo())
-    .then((result) => {
-      console.log(result);
-    })
     .then(() => this._openSuccessPopup())
     .catch((err) => {
       console.log(err);

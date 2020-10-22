@@ -1,4 +1,4 @@
-xport default class MainApi {
+export default class MainApi {
   constructor(options) {
     this.options = options;
     this.url = this.options.baseUrl;
@@ -6,7 +6,17 @@ xport default class MainApi {
   }
 
   getUserData = () => {
-
+    return fetch(`${this.url}/users/me`, {
+      method: 'GET',
+      headers: this.headers,
+      credentials: 'include',
+    })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 
   signup = (data) => {
@@ -22,12 +32,15 @@ xport default class MainApi {
       })
       .then((res) => {
         if (res.ok) {
-        return res.json();
-      }
-      console.log(res);
-      return Promise.reject(`Что-то пошло не так... Код ошибки: ${res.status}`);
-    });
-  }
+          return res.json();
+        }
+          const json = res.json();
+          return json.then(Promise.reject.bind(Promise))
+        })
+        .catch((err) => {
+          throw err;
+        });
+      };
 
   signin = (data) => {
     return fetch(`${this.url}/signin`, {
@@ -41,9 +54,13 @@ xport default class MainApi {
     })
     .then((res) => {
       if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Что-то пошло не так... Код ошибки: ${res.status}`);
-  });
+        return res.json();
+      }
+        const json = res.json();
+        return json.then(Promise.reject.bind(Promise))
+      })
+      .catch((err) => {
+        throw err;
+      });
   }
 }

@@ -22,13 +22,13 @@
               <a class="header__link" href="./index.html">Главная</a>
             </li>
             <li class="header__nav-list-item">
-              <a class="header__link header__link_type_passive" href="./articles.html">
+              <a class="header__link header__link_type_passive hidden" href="./articles.html">
                 Сохранённые статьи
               </a>
             </li>
           </ul>
           <button type="button" class="button button_authorization">авторизоваться</button>
-          <button class="button button_logout hidden">грета</button>
+          <button class="button button_logout hidden"></button>
         </nav>
       </header>
       <section class="search">
@@ -38,28 +38,32 @@
             Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.
           </p>
           <form class="search__form">
-            <input class="search__input" type="text" placeholder="Введите тему новости"
-              pattern="[А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?" minlength="2" maxlength="20" required>
+            <input class="search__input" name="keyword" type="text" placeholder="Введите тему новости" minlength="2"
+              maxlength="20" required>
             <button class="button button_search" type="submit">Искать</button>
           </form>
         </div>
       </section>
     </div>
-    <section class="loader hidden">
+
+    <div class="loader hidden">
       <i class="loader__circle-preloader"></i>
       <h2 class="loader__message">Идет поиск новостей...</h2>
-    </section>
-    <section class="not-found hidden">
+    </div>
+
+    <div class="not-found hidden">
       <img class="not-found__image" src="<%=require('./images/not-found_v1.svg')%>" alt="грустный смайлик">
       <h2 class="not-found__title">Ничего не найдено</h2>
       <p class="not-found__message">
         К сожалению по вашему запросу ничего не найдено.
       </p>
-    </section>
-    <section class="search-results">
+    </div>
+
+    <section class="search-results hidden">
       <p class="search-results__title">Результаты поиска</p>
       <div class="search-results__container">
-        <a class="card" href="https://lenta.ru" target="_blank">
+
+        <!-- <a class="card" href="https://lenta.ru" target="_blank">
           <img class="card__image" src="<%=require('./images/first-card.png')%>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date">2 августа, 2019</p>
@@ -99,7 +103,8 @@
             <cite class="card__source">риа</cite>
           </div>
           <div class="card__save-button card__save-button_type_unauthorized"></div>
-        </a>
+        </a> -->
+
       </div>
       <button type="button" class="button button_more">Показать ещё</button>
     </section>
@@ -151,41 +156,53 @@
       <div class="popup__content">
         <h3 class="popup__title">Регистрация</h3>
         <div class="popup__container"></div>
-      <button class="popup__close"></button>
-      <button class="popup__link" type="button"></button>
-    </div>
+        <button class="popup__close"></button>
+        <button class="popup__link" type="button"></button>
+      </div>
     </div>
 
+    <template id="card">
+        <a class="card" href="" target="_blank">
+          <img class="card__image" src="<%=require('./images/first-card.png')%>" alt="иллюстрация к статье">
+          <div class="card__description">
+            <p class="card__date"></p>
+            <h2 class="card__title"></h2>
+            <blockquote class="card__text">
+            </blockquote>
+          </div>
+          <cite class="card__source"></cite>
+          <div class="card__save-button"></div>
+        </a>
+    </template>
 
 
     <template id="signup">
-        <form class="popup__form">
-          <span class="popup__label">Email</span>
-          <input class="popup__input" name="email" type="email" placeholder="Введите почту" required>
-          <span class="popup__error"></span>
-          <span class="popup__label">Пароль</span>
-          <input class="popup__input" name="password" type="password" placeholder="Введите пароль" minlength="8" required>
-          <span class="popup__error"></span>
-          <span class="popup__label">Имя</span>
-          <input class="popup__input" name="name" type="text"
-           pattern="([А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?)|([A-Z][a-z\s]+?(-[A-Z][a-z\s]+)?)"
-           placeholder="Введите имя" minlength="2" maxlength="30" required>
-          <span class="popup__error"></span>
-          <button type="submit" class="popup__button signup" name="button">Зарегистрироваться</button>
-        </form>
+      <form class="popup__form">
+        <span class="popup__label">Email</span>
+        <input class="popup__input" name="email" type="email" placeholder="Введите почту" required>
+        <span class="popup__error"></span>
+        <span class="popup__label">Пароль</span>
+        <input class="popup__input" name="password" type="password" placeholder="Введите пароль" minlength="8" required>
+        <span class="popup__error"></span>
+        <span class="popup__label">Имя</span>
+        <input class="popup__input" name="name" type="text"
+          pattern="([А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?)|([A-Z][a-z\s]+?(-[A-Z][a-z\s]+)?)" placeholder="Введите имя"
+          minlength="2" maxlength="30" required>
+        <span class="popup__error"></span>
+        <button type="submit" class="popup__button signup" name="button">Зарегистрироваться</button>
+      </form>
     </template>
 
     <template id="login">
-        <form class="popup__form">
-          <span class="popup__label">Email</span>
-          <input class="popup__input" name="email" type="email"
-            placeholder="Введите почту" required>
-          <span class="popup__error"></span>
-          <span class="popup__label">Пароль</span>
-          <input class="popup__input" name="password" type="password" placeholder="Введите пароль" minlength="8" required>
-          <span class="popup__error"></span>
-          <button class="popup__button login" name="button" type="submit">Войти</button>
-        </form>
+      <form class="popup__form">
+        <span class="popup__label">Email</span>
+        <input class="popup__input" name="email" type="email" placeholder="Введите почту" required>
+        <span class="popup__error"></span>
+        <span class="popup__label">Пароль</span>
+        <input class="popup__input" name="password" type="password" placeholder="Введите пароль" minlength="8" required>
+        <span class="popup__error"></span>
+        <button class="popup__button login" name="button" type="submit">Войти</button>
+      </form>
     </template>
 
     <template id="success">
