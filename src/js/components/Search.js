@@ -10,6 +10,7 @@ export default class Search {
     event.preventDefault();
     this.cardList.renderLoader(true);
     this.cardList.clearContent();
+    this.cardList.showButton();
     this.api.getArticles(this._createData())
     .then((res) => {
       if(res.totalResults === 0) {
@@ -24,8 +25,10 @@ export default class Search {
     })
     .then(() => {
       this.cardList.renderResults();
+
     })
     .then(() => {
+      this.cardList.setListener();
       this.element.classList.remove('hidden');
     })
     .catch(() => {

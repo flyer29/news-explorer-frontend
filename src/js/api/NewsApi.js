@@ -4,7 +4,7 @@ export default class NewsApi {
   }
 
   getArticles = (data) => {
-    return fetch(`http://newsapi.org/v2/everything?q=${data.keyword}&from=2020-10-21&pageSize=10&sortBy=publishedAt&apiKey=${this.options.apiKey}`, {
+    return fetch(`http://newsapi.org/v2/everything?q=${data.keyword}&from=2020-10-21&pageSize=11&sortBy=publishedAt&apiKey=${this.options.apiKey}`, {
         method: 'GET',
       })
       .then((res) => {

@@ -18,6 +18,7 @@ import NewsCardList from './js/components/NewsCardList';
   const searchForm = document.querySelector('.search__form');
   const searchResults = document.querySelector('.search-results');
   const cardsContainer = document.querySelector('.search-results__container');
+  const cardsAmount = 3;
   const defaultImage = './images/glass.png';
   const config = {
     baseUrl: 'http://localhost:3000',
@@ -28,7 +29,7 @@ import NewsCardList from './js/components/NewsCardList';
   const newsApiConfig = {
     apiKey: 'a99a8e317b0f460593fb8974cb00701e',
   };
-  const newsCardList = new NewsCardList([], cardTemplate, cardsContainer, defaultImage, searchResults);
+  const newsCardList = new NewsCardList([], cardTemplate, cardsContainer, defaultImage, searchResults, cardsAmount);
   const newsApi = new NewsApi(newsApiConfig);
   const search = new Search(searchElement, newsApi, newsCardList);
   const authApi = new MainApi(config);
