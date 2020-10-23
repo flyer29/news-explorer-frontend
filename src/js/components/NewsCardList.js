@@ -24,15 +24,6 @@ export default class NewsCardList {
     } else {
       this._createCards(part);
     }
-
-    /* for (let i = 0 + this.n; i < this.amount + this.n; i++) {
-      part.push(articles[i]);
-      if ((articles.length - part.length) < this.amount) {
-        this.n = articles.length - part.length;
-      }
-      if (articles.length === part.length) {
-        this.button.classList.add('hidden');
-      } */
   }
 
   _createCards = (array) => {
@@ -61,10 +52,7 @@ export default class NewsCardList {
   }
 
   showButton = () => {
-    /* console.log(this.button);
-    if (this.button.calssList.contains('hidden')) { */
       this.button.classList.remove('hidden');
-   /*  }; */
   }
 
   renderLoader = (isLoad) => {

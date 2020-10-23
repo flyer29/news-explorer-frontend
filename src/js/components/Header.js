@@ -1,11 +1,11 @@
 export default class Header {
-  constructor(element) {
+  constructor(element, api) {
     this.element = element;
+    this.api = api;
     this.logoutButton = this.element.querySelector('.button_logout');
     this.link = this.element.querySelector('.header__link_type_passive');
     this.authorizeButton = this.element.querySelector('.button_authorization');
   }
-
 
   render = (props) => {
     if (props.isLoggedIn) {
@@ -20,4 +20,17 @@ export default class Header {
     }
   }
 
+  logout = () => {
+    this.api.logout()
+      .then(() => {
+        this.render(false);
+      })
+      .then(() => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      // window.location.replace('/');
+  }
 }

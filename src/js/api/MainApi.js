@@ -7,16 +7,20 @@ export default class MainApi {
 
   getUserData = () => {
     return fetch(`${this.url}/users/me`, {
-      method: 'GET',
-      headers: this.headers,
-      credentials: 'include',
-    })
-    .then((res) => {
-      return res.json();
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+        method: 'GET',
+        headers: this.headers,
+        credentials: 'include',
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        const json = res.json();
+        return json.then(Promise.reject.bind(Promise))
+      })
+      .catch((err) => {
+        throw err;
+      });
   }
 
   signup = (data) => {
@@ -34,30 +38,46 @@ export default class MainApi {
         if (res.ok) {
           return res.json();
         }
-          const json = res.json();
-          return json.then(Promise.reject.bind(Promise))
-        })
-        .catch((err) => {
-          throw err;
-        });
-      };
+        const json = res.json();
+        return json.then(Promise.reject.bind(Promise))
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
 
   signin = (data) => {
     return fetch(`${this.url}/signin`, {
-      method: 'POST',
-      headers: this.headers,
-      credentials: 'include',
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-      }),
-    })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
+        method: 'POST',
+        headers: this.headers,
+        credentials: 'include',
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
         const json = res.json();
         return json.then(Promise.reject.bind(Promise))
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  logout = () => {
+    return fetch(`${this.url}/logout`, {
+        method: 'POST',
+        headers: this.headers,
+        credentials: 'include',
+      })
+      .then((res) => {
+        return res.json();
+       /* const json = res.json();
+        return json.then(Promise.reject.bind(Promise)) */
       })
       .catch((err) => {
         throw err;
