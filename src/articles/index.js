@@ -9,9 +9,15 @@ const config = {
   },
 };
 
-const header = new HeaderArticles(document.querySelector('.header'));
+const header = document.querySelector('.header');
+const logoutButton = header.querySelector('.button_logout');
+const headerBurger = header.querySelector('.header__button');
+
 
 const mainApi = new MainApi(config);
+const headerArticles = new HeaderArticles(header, mainApi);
+
+
 mainApi.getUserData()
   .then((res) => {
     localStorage.setItem('user', `${JSON.stringify(res.data)}`);
@@ -19,20 +25,11 @@ mainApi.getUserData()
       isLoggedIn: true,
       userName: JSON.parse(localStorage.getItem('user')).name,
     };
-    console.log(props);
-    header.render(props);
+    headerArticles.render(props);
   })
-  .catch((err) => {
-    console.log(err);
+  .catch(() => {
+    window.location.href = '../index.html';
   });
-
-
-
-const props = {
-  isLoggedIn: true,
-  userName: JSON.parse(localStorage.getItem('user')).name,
-};
-header.render(props);
 
 /* const headerButton = document.querySelector('.header__button');
 const headerTitle = document.querySelector('.header__title');
@@ -51,3 +48,6 @@ headerButton.addEventListener('click', () => {
     item.classList.toggle('header__link_menu');
   }); */
 
+
+headerBurger.addEventListener('click', headerArticles.openMenu);
+logoutButton.addEventListener('click', headerArticles.logout);

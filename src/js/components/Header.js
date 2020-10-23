@@ -34,7 +34,6 @@ export default class Header {
       .catch((err) => {
         console.log(err);
       })
-      // window.location.replace('/');
   }
 
   openMenu = () => {

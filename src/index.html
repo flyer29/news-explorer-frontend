@@ -45,20 +45,15 @@
         </div>
       </section>
     </div>
-
-    <div class="loader hidden">
+    <section class="loader hidden">
       <i class="loader__circle-preloader"></i>
       <h2 class="loader__message">Идет поиск новостей...</h2>
     </div>
-
-    <div class="not-found hidden">
+    <section class="not-found hidden">
       <img class="not-found__image" src="<%=require('./images/not-found_v1.svg')%>" alt="грустный смайлик">
       <h2 class="not-found__title">Ничего не найдено</h2>
-      <p class="not-found__message">
-        К сожалению по вашему запросу ничего не найдено.
-      </p>
-    </div>
-
+      <p class="not-found__message"></p>
+    </section>
     <section class="search-results hidden">
       <p class="search-results__title">Результаты поиска</p>
       <div class="search-results__container">
@@ -175,7 +170,6 @@
         </a>
     </template>
 
-
     <template id="signup">
       <form class="popup__form">
         <span class="popup__label">Email</span>
@@ -205,12 +199,12 @@
       </form>
     </template>
 
-    <template id="success">
+    <!-- <template id="success">
       <div class="popup__content popup__content_type_success">
         <button class="popup__close"></button>
         <button class="popup__link popup__link_type_success" type="button">Войти</button>
       </div>
-    </template>
+    </template> -->
   </div>
   <script src="<%=htmlWebpackPlugin.files.js[0]%>"></script>
 </body>
