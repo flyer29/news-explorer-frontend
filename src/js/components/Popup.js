@@ -10,7 +10,6 @@ export default class Popup {
     this.container = this.element.querySelector('.popup__container');
     this.signUpForm = signUp.form;
     this.loginForm = login.form;
-    this.formError =
     this.closeButton = this.element.querySelector('.popup__close');
     this.popupLink = this.element.querySelector('.popup__link');
     this._closeByEsc = this._closeByEsc.bind(this);
@@ -38,7 +37,7 @@ export default class Popup {
 
   sendLoginForm = (event) => {
     event.preventDefault();
-    this.api.signin(this.login._getInfo())
+    this.api.signin(this.login.getInfo())
     .then((res) => {
       localStorage.setItem('user', `${JSON.stringify(res)}`)
       const props = {
@@ -51,16 +50,16 @@ export default class Popup {
       this.close();
     })
     .catch((err) => {
-      console.log(err);
+      this.login.setServerError(err.message);
     });
   }
 
   sendSignUpForm = (event) => {
     event.preventDefault();
-    this.api.signup(this.signUp._getInfo())
+    this.api.signup(this.signUp.getInfo())
     .then(() => this._openSuccessPopup())
     .catch((err) => {
-      console.log(err);
+      this.signUp.setServerError(err.message);
     });
   }
 

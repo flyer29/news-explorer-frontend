@@ -4,6 +4,7 @@ export default class Form {
     this.api = api;
     this.form = template.content.querySelector('.popup__form').cloneNode(true);
     this.button = this.form.querySelector('.popup__button');
+    this.errorElement = this.form.querySelector('.popup__server-error');
     this.inputs = Array.from(this.form.querySelectorAll('input'));
   }
 
@@ -48,11 +49,11 @@ export default class Form {
     });
   }
 
-  setServerError = () => {
-
+  setServerError = (content) => {
+    this.errorElement.textContent = content;
   }
 
-  _getInfo = () => {
+  getInfo = () => {
     const data = {};
     this.form.elements.forEach((item) => {
       if (item.name !== 'button') {
@@ -67,6 +68,7 @@ export default class Form {
     this.form.querySelectorAll('.popup__error').forEach((item) => {
       item.textContent = '';
     });
+    this.errorElement.textContent = '';
   }
 
   _showMessage = (event) => {

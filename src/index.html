@@ -57,49 +57,6 @@
     <section class="search-results hidden">
       <p class="search-results__title">Результаты поиска</p>
       <div class="search-results__container">
-
-        <!-- <a class="card" href="https://lenta.ru" target="_blank">
-          <img class="card__image" src="<%=require('./images/first-card.png')%>" alt="иллюстрация к статье">
-          <div class="card__description">
-            <p class="card__date">2 августа, 2019</p>
-            <h2 class="card__title">Национальное достояние – парки</h2>
-            <blockquote class="card__text">
-              В 2016 году Америка отмечала важный юбилей: сто лет назад здесь начала
-              складываться система национальных парков – охраняемых территорий, где
-              и сегодня каждый может приобщиться к природе.
-            </blockquote>
-            <cite class="card__source">лента.ру</cite>
-          </div>
-          <div class="card__save-button"></div>
-        </a>
-        <a class="card" href="https://meduza.io" target="_blank">
-          <img class="card__image" src="<%=require('./images/second-image.png')%>" alt="иллюстрация к статье">
-          <div class="card__description">
-            <p class="card__date">2 августа, 2019</p>
-            <h2 class="card__title">Лесные огоньки: история одной фотографии</h2>
-            <blockquote class="card__text">
-              Фотограф отвлеклась от освещения суровой политической реальности Мексики,
-              чтобы запечатлеть ускользающую красоту одного из местных чудес природы.
-            </blockquote>
-            <cite class="card__source">медуза</cite>
-          </div>
-          <div class="card__save-button card__save-button_type_saved"></div>
-        </a>
-        <a class="card" href="https://ria.ru" target="_blank">
-          <img class="card__image" src="<%=require('./images/third-image.png')%>" alt="иллюстрация к статье">
-          <div class="card__description">
-            <p class="card__date">2 августа, 2019</p>
-            <h2 class="card__title">Первозданная тайга»: новый фотопроект Игоря Шпиленка</h2>
-            <blockquote class="card__text">
-              Знаменитый фотограф снимает первозданные леса России, чтобы рассказать
-              о необходимости их сохранения.
-              В этот раз он отправился в Двинско-Пинежскую тайгу, где...
-            </blockquote>
-            <cite class="card__source">риа</cite>
-          </div>
-          <div class="card__save-button card__save-button_type_unauthorized"></div>
-        </a> -->
-
       </div>
       <button type="button" class="button button_more">Показать ещё</button>
     </section>
@@ -183,6 +140,7 @@
           pattern="([А-ЯЁ][а-яё\s]+?(-[А-ЯЁ][а-яё\s]+)?)|([A-Z][a-z\s]+?(-[A-Z][a-z\s]+)?)" placeholder="Введите имя"
           minlength="2" maxlength="30" required>
         <span class="popup__error"></span>
+        <span class="popup__server-error"></span>
         <button type="submit" class="popup__button signup" name="button">Зарегистрироваться</button>
       </form>
     </template>
@@ -195,16 +153,10 @@
         <span class="popup__label">Пароль</span>
         <input class="popup__input" name="password" type="password" placeholder="Введите пароль" minlength="8" required>
         <span class="popup__error"></span>
+        <span class="popup__server-error"></span>
         <button class="popup__button login" name="button" type="submit">Войти</button>
       </form>
     </template>
-
-    <!-- <template id="success">
-      <div class="popup__content popup__content_type_success">
-        <button class="popup__close"></button>
-        <button class="popup__link popup__link_type_success" type="button">Войти</button>
-      </div>
-    </template> -->
   </div>
   <script src="<%=htmlWebpackPlugin.files.js[0]%>"></script>
 </body>

@@ -76,8 +76,6 @@ export default class MainApi {
       })
       .then((res) => {
         return res.json();
-       /* const json = res.json();
-        return json.then(Promise.reject.bind(Promise)) */
       })
       .catch((err) => {
         throw err;

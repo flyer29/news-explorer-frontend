@@ -6,6 +6,7 @@
 @import url('./__form/popup__form.css');
 @import url('./__input/popup__input.css');
 @import url('./__error/popup__error.css');
+@import url('./__server-error/popup__server-error.css');
 @import url('./__api-error/popup__api-error.css');
 @import url('./__close/popup__close.css');
 @import url('./__button/popup__button.css');
