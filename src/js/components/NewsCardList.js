@@ -15,9 +15,9 @@ export default class NewsCardList {
 
   renderResults = () => {
     const articles = JSON.parse(localStorage.getItem('articles'));
-    const part = articles.splice(3 * this.n, 3);
+    const part = articles.splice(this.amount * this.n, this.amount);
     console.log(part.length);
-    if ((part.length < 3)  || (3 * this.n + 3 === articles.length)) {
+    if ((part.length < this.amount)  || (this.amount * this.n + this.amount === articles.length)) {
       this._createCards(part);
       this.button.classList.add('hidden');
       this.n = 0;

@@ -9,16 +9,18 @@ import NewsCardList from './js/components/NewsCardList';
 
 (function () {
   const root = document.querySelector('.popup');
-  const authorizationButton = document.querySelector('.button_authorization');
   const loginPopupTemplate = document.querySelector('#login');
   const signUpPopupTemplate = document.querySelector('#signup');
   const cardTemplate = document.querySelector('#card');
   const searchElement = document.querySelector('.search');
   const headerElement = document.querySelector('.header');
   const logoutButton = headerElement.querySelector('.button_logout');
+  const headerBurger = headerElement.querySelector('.header__button');
+  const authorizationButton = headerElement.querySelector('.button_authorization');
   const searchForm = document.querySelector('.search__form');
   const searchResults = document.querySelector('.search-results');
   const cardsContainer = document.querySelector('.search-results__container');
+
   const cardsAmount = 3;
   const defaultImage = './images/glass.png';
   const config = {
@@ -56,6 +58,7 @@ import NewsCardList from './js/components/NewsCardList';
     });
   // const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
   authorizationButton.addEventListener('click', popup.openMainPopup);
+  headerBurger.addEventListener('click', header.openMenu);
   logoutButton.addEventListener('click', header.logout);
   searchForm.addEventListener('submit', search.getArticles);
 }());
