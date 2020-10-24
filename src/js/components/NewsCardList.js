@@ -16,7 +16,6 @@ export default class NewsCardList {
   renderResults = () => {
     const articles = JSON.parse(localStorage.getItem('articles'));
     const part = articles.splice(this.amount * this.n, this.amount);
-    console.log(part.length);
     if ((part.length < this.amount)  || (this.amount * this.n + this.amount === articles.length)) {
       this._createCards(part);
       this.button.classList.add('hidden');
@@ -35,7 +34,7 @@ export default class NewsCardList {
       } else {
         card.querySelector('.card__image').setAttribute('src', `${item.urlToImage}`);
       }
-      card.querySelector('.card__date').textContent = item.publishedAt;
+      card.querySelector('.card__date').textContent = this.createCardDate(item.publishedAt);
       card.querySelector('.card__title').textContent = item.title;
       card.querySelector('.card__text').textContent = item.description;
       card.querySelector('.card__source').textContent = item.source.name;
@@ -81,4 +80,24 @@ export default class NewsCardList {
   setListener = () => {
     this.button.addEventListener('click', this._showMore);
   }
+
+  createCardDate = (date) => {
+    const months = {
+      '0': 'января',
+      '1': 'февраля',
+      '2': 'марта',
+      '3': 'апреля',
+      '4': 'мая',
+      '5': 'июня',
+      '6': 'июля',
+      '7': 'августа',
+      '8': 'сентября',
+      '9': 'октября',
+      '10': 'ноября',
+      '11': 'декабря',
+    }
+    const cardDate = new Date(date);
+    return `${cardDate.getDate()} ${months[cardDate.getMonth()]} ${cardDate.getFullYear()}`;
+  }
+
 }
