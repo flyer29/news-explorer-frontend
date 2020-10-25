@@ -1,14 +1,13 @@
 export default class NewsCardList {
-  constructor(array, template, element, defaultImage, container, cardsAmount) {
+  constructor(createCardFunction, element, container, cardsAmount, card) {
     this.container = container;
     this.amount = cardsAmount;
+    this.card = card;
     this.preloader = document.querySelector('.loader');
     this.notFound = document.querySelector('.not-found');
     this.errorMessage = this.notFound.querySelector('.not-found__message');
-    this.array = array;
-    this.template = template;
+    this.createCardFunction = createCardFunction;
     this.element = element;
-    this.defaultImage = defaultImage;
     this.button = this.container.querySelector('.button_more');
     this.n = 0;
   }
@@ -17,35 +16,19 @@ export default class NewsCardList {
     const articles = JSON.parse(localStorage.getItem('articles'));
     const part = articles.splice(this.amount * this.n, this.amount);
     if ((part.length < this.amount)  || (this.amount * this.n + this.amount === articles.length)) {
-      this._createCards(part);
+      this._addCard(part);
       this.button.classList.add('hidden');
       this.n = 0;
     } else {
-      this._createCards(part);
+      this._addCard(part);
     }
-  }
-
-  _createCards = (array) => {
-    array.forEach((item) => {
-      const card = this.template.content.firstElementChild.cloneNode(true);
-      card.setAttribute('href', `${item.url}`);
-      if (item.urlToImage === null) {
-        card.querySelector('.card__image').setAttribute('src', `${this.defaultImage}`);
-      } else {
-        card.querySelector('.card__image').setAttribute('src', `${item.urlToImage}`);
-      }
-      card.querySelector('.card__date').textContent = this.createCardDate(item.publishedAt);
-      card.querySelector('.card__title').textContent = item.title;
-      card.querySelector('.card__text').textContent = item.description;
-      card.querySelector('.card__source').textContent = item.source.name;
-      this._addCard(card);
-      this.element.parentNode.classList.remove('hidden');
-    });
+    this.element.parentNode.classList.remove('hidden');
+    this.card.renderIcon();
   }
 
   clearContent = () => {
     this.notFound.classList.add('hidden');
-    this.element.querySelectorAll('.card').forEach((item) => {
+    this.element.querySelectorAll('.card-wrapper').forEach((item) => {
       item.remove();
     })
   }
@@ -73,31 +56,13 @@ export default class NewsCardList {
     this.renderResults()
   }
 
-  _addCard = (card) => {
-    this.element.appendChild(card);
+  _addCard = (array) => {
+    array.forEach((item) => {
+      this.element.appendChild(this.createCardFunction(item));
+    })
   }
 
   setListener = () => {
     this.button.addEventListener('click', this._showMore);
   }
-
-  createCardDate = (date) => {
-    const months = {
-      '0': 'января',
-      '1': 'февраля',
-      '2': 'марта',
-      '3': 'апреля',
-      '4': 'мая',
-      '5': 'июня',
-      '6': 'июля',
-      '7': 'августа',
-      '8': 'сентября',
-      '9': 'октября',
-      '10': 'ноября',
-      '11': 'декабря',
-    }
-    const cardDate = new Date(date);
-    return `${cardDate.getDate()} ${months[cardDate.getMonth()]} ${cardDate.getFullYear()}`;
-  }
-
 }

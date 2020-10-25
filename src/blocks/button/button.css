@@ -14,3 +14,7 @@
 .button:disabled:hover {
   cursor: auto;
 }
+
+.button:active {
+  outline: none;
+}

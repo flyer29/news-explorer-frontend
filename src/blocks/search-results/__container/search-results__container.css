@@ -1,16 +1,16 @@
 .search-results__container {
-  /* display: grid;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
   grid-gap: 64px 16px;
- */
-  display: flex;
+
+  /* display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: stretch; */
+  padding: 0 0 64px 0;
   box-sizing: border-box;
-  padding: 0;
   position: relative;
   z-index: 0;
 }

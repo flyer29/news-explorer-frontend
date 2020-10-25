@@ -6,6 +6,7 @@
 @import url('../../blocks/wrapper/wrapper.css');
 @import url('../../blocks/footer/footer.css');
 @import url('../../blocks/search-results/search-results.css');
+@import url('../../blocks/card-wrapper/card-wrapper.css');
 @import url('../../blocks/card/card.css');
 @import url('../../blocks/button/button.css');
 @import url('../../blocks/button/_authorization/button_authorization.css');

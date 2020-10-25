@@ -44,7 +44,7 @@ export default class MainApi {
       .catch((err) => {
         throw err;
       });
-  };
+  }
 
   signin = (data) => {
     return fetch(`${this.url}/signin`, {
@@ -81,4 +81,70 @@ export default class MainApi {
         throw err;
       });
   }
+
+  createArticle = (data) => {
+    return fetch(`${this.url}/articles`, {
+        method: 'POST',
+        headers: this.headers,
+        credentials: 'include',
+        body: JSON.stringify({
+          keyword: data.keyword,
+          title: data.title,
+          text: data.text,
+          source: data.source,
+          image: data.image,
+          link: data.link,
+          date: data.date,
+        }),
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        const json = res.json();
+        return json.then(Promise.reject.bind(Promise))
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  deleteArticle = (data) => {
+    return fetch(`${this.url}/articles/${data.id}`, {
+        method: 'DELETE',
+        headers: this.headers,
+        credentials: 'include',
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        const json = res.json();
+        return json.then(Promise.reject.bind(Promise))
+      })
+      .catch((err) => {
+        throw err;
+      });
+   }
+
+   getAllUserArticles = () =>  {
+    return fetch(`${this.url}/articles`, {
+        method: 'GET',
+        headers: this.headers,
+        credentials: 'include',
+      })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        const json = res.json();
+        return json.then(Promise.reject.bind(Promise))
+      })
+      .catch((err) => {
+        throw err;
+    });
+  }
 }
+
+
+

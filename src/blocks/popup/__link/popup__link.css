@@ -22,3 +22,7 @@
   right: 5px;
   color: #000;
 }
+
+.popup__link:active {
+  outline: none;
+}

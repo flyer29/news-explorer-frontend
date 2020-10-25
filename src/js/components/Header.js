@@ -1,6 +1,7 @@
 export default class Header {
-  constructor(element, api) {
+  constructor(element, api, card) {
     this.element = element;
+    this.card = card;
     this.api = api;
     this.burger = this.element.querySelector('.header__button');
     this.overlay = this.element.querySelector('.header__overlay');
@@ -29,7 +30,10 @@ export default class Header {
         this.render(false);
       })
       .then(() => {
-        window.location.reload();
+        localStorage.removeItem('user');
+      })
+      .then(() => {
+        this.card.renderIcon();
       })
       .catch((err) => {
         console.log(err);

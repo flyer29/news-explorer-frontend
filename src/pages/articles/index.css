@@ -11,6 +11,8 @@
 @import url('../../blocks/button/_logout_articles/button_logout_articles.css');
 @import url('../../blocks/button/_logout_menu/button_logout_menu.css');
 @import url('../../blocks/articles/articles.css');
+@import url('../../blocks/card/card.css');
+@import url('../../blocks/card-wrapper/card-wrapper.css');
 @import url('../../blocks/show/show.css');
 
 body {

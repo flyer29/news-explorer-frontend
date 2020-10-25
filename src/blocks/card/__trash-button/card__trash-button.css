@@ -46,6 +46,10 @@
   }
 }
 
+.card__trash-button:active {
+  outline: none;
+}
+
 @media screen and (max-width: 767px) {
   .card__trash-button {
     top: 16px;

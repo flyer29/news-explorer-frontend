@@ -25,7 +25,6 @@ export default class Search {
     })
     .then(() => {
       this.cardList.renderResults();
-
     })
     .then(() => {
       this.cardList.setListener();
@@ -39,13 +38,13 @@ export default class Search {
     })
   }
 
-  _getKeyWord = () => {
+  getKeyWord = () => {
     return this.form.value;
   }
 
   _createData = () => {
     return {
-      keyword: this._getKeyWord(),
+      keyword: this.getKeyWord(),
     }
   }
 }

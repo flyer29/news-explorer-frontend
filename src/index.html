@@ -114,17 +114,20 @@
     </div>
 
     <template id="card">
+      <div class="card-wrapper">
         <a class="card" href="" target="_blank">
-          <img class="card__image" src="<%=require('./images/first-card.png')%>" alt="иллюстрация к статье">
+          <img class="card__image" src="" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date"></p>
             <h2 class="card__title"></h2>
-            <blockquote class="card__text">
-            </blockquote>
+            <blockquote class="card__text"></blockquote>
           </div>
           <cite class="card__source"></cite>
-          <div class="card__save-button"></div>
+          <i class="card__keyword hidden"></i>
+          <p class="card__id hidden"></p>
         </a>
+        <button class="card__save-button" type="button"></button>
+      </div>
     </template>
 
     <template id="signup">

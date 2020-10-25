@@ -1,5 +1,5 @@
 export default class Popup {
-  constructor(element, signUp, login, api, header) {
+  constructor(element, signUp, login, api, header, card) {
     this.element = element;
     this.header = header;
     this.title = this.element.querySelector('.popup__title');
@@ -7,6 +7,7 @@ export default class Popup {
     this.signUp = signUp;
     this.login = login;
     this.api = api;
+    this.card = card;
     this.container = this.element.querySelector('.popup__container');
     this.signUpForm = signUp.form;
     this.loginForm = login.form;
@@ -45,6 +46,7 @@ export default class Popup {
         userName: JSON.parse(localStorage.getItem('user')).name,
         }
       this.header.render(props);
+      this.card.renderIcon();
     })
     .then(() => {
       this.close();

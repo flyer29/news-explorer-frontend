@@ -20,6 +20,10 @@
   font-size: 16px;
 }
 
+.search__input:active {
+  outline: none;
+}
+
 @media screen and (max-width: 1280px) {
   .search__input {
     height: 56px;

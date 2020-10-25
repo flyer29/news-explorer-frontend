@@ -3,6 +3,7 @@ import Popup from './js/components/Popup';
 import Header from './js/components/Header';
 import Form from './js/components/Form';
 import MainApi from './js/api/MainApi';
+import Card from './js/components/Card';
 import Search from './js/components/Search';
 import NewsApi from './js/api/NewsApi';
 import NewsCardList from './js/components/NewsCardList';
@@ -35,16 +36,20 @@ import NewsCardList from './js/components/NewsCardList';
     to: new Date(),
     pageSize: 12,
   };
-  const newsCardList = new NewsCardList([], cardTemplate, cardsContainer, defaultImage, searchResults, cardsAmount);
-  const newsApi = new NewsApi(newsApiConfig);
-  const search = new Search(searchElement, newsApi, newsCardList);
-  const authApi = new MainApi(config);
-  const header = new Header(headerElement, authApi);
-  const loginForm = new Form(loginPopupTemplate);
-  const signUpForm = new Form(signUpPopupTemplate, authApi);
-  const popup = new Popup(root, signUpForm, loginForm, authApi, header);
 
-  authApi.getUserData()
+  const mainApi = new MainApi(config);
+  const newsApi = new NewsApi(newsApiConfig);
+  const card = new Card(cardTemplate, defaultImage, cardsContainer, mainApi);
+  const createNewCard = (...arg) => new Card(cardTemplate, defaultImage, cardsContainer, mainApi).create(...arg);
+  const newsCardList = new NewsCardList(createNewCard, cardsContainer, searchResults, cardsAmount, card);
+  const search = new Search(searchElement, newsApi, newsCardList);
+
+  const header = new Header(headerElement, mainApi, card);
+  const loginForm = new Form(loginPopupTemplate);
+  const signUpForm = new Form(signUpPopupTemplate, mainApi);
+  const popup = new Popup(root, signUpForm, loginForm, mainApi, header, card);
+
+  mainApi.getUserData()
     .then((res) => {
       localStorage.setItem('user', `${JSON.stringify(res.data)}`);
       const props = {
@@ -54,6 +59,7 @@ import NewsCardList from './js/components/NewsCardList';
       header.render(props);
     })
     .catch((err) => {
+      localStorage.removeItem('user');
       console.log(err.message);
     });
   // const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';

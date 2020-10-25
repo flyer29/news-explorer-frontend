@@ -2,6 +2,7 @@ import Header from './Header';
 export default class HeaderArticles extends Header {
   constructor(element, api) {
     super(element, api);
+    this.headerTitle = this.element.querySelector('.header__title');
     this.logoutButton = this.element.querySelector('.button_logout_articles');
     this.overlay = this.element.querySelector('.header__overlay');
     this.headerNav = this.element.querySelector('.header__nav');
@@ -28,6 +29,8 @@ export default class HeaderArticles extends Header {
   }
 
   openMenu = () => {
+    this.headerTitle.classList.remove('header__title_articles');
+    this.logoutButton.classList.add('button_logout_menu');
     this.burger.classList.add('header__button_close');
     this.overlay.classList.remove('hidden');
     this.headerNav.classList.add('show');
@@ -35,6 +38,8 @@ export default class HeaderArticles extends Header {
   }
 
   closeMenu = () => {
+    this.headerTitle.classList.add('header__title_articles');
+    this.logoutButton.classList.remove('button_logout_menu');
     this.burger.classList.remove('header__button_close');
     this.overlay.classList.add('hidden');
     this.headerNav.classList.remove('show');
