@@ -41,7 +41,9 @@
             <input class="search__input" name="keyword" type="text" placeholder="Введите тему новости" minlength="2"
               maxlength="20" required>
             <button class="button button_search" type="submit">Искать</button>
+            <span class="search__error"></span>
           </form>
+
         </div>
       </section>
     </div>
@@ -115,8 +117,8 @@
 
     <template id="card">
       <div class="card-wrapper">
-        <a class="card" href="" target="_blank">
-          <img class="card__image" src="" alt="иллюстрация к статье">
+        <a class="card" href="https://ria.ru" target="_blank">
+          <img class="card__image" src="<%=require('./images/glass.png')%>" alt="иллюстрация к статье">
           <div class="card__description">
             <p class="card__date"></p>
             <h2 class="card__title"></h2>

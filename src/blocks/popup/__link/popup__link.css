@@ -10,6 +10,8 @@
   margin: 0 auto;
   background: none;
   cursor: pointer;
+  outline: none;
+  appearance: none;
 }
 
 .popup__link::before {
@@ -25,4 +27,5 @@
 
 .popup__link:active {
   outline: none;
+  appearance: none;
 }

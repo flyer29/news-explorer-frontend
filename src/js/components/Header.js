@@ -30,7 +30,9 @@ export default class Header {
         this.render(false);
       })
       .then(() => {
-        localStorage.removeItem('user');
+        localStorage.removeItem('user')
+        localStorage.removeItem('userArticles');
+        /* localStorage.removeItem('articles'); */
       })
       .then(() => {
         this.card.renderIcon();

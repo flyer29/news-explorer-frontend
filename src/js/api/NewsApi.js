@@ -5,7 +5,8 @@ export default class NewsApi {
   }
 
   getArticles = (data) => {
-    return fetch(`http://newsapi.org/v2/everything?q=${data.keyword}&from=${this._getFrom()}&to=${this._getTo()}&pageSize=${this.options.pageSize}&sortBy=publishedAt&apiKey=${this.options.apiKey}`, {
+    const protocol = process.env.NODE_ENV === 'development' ? 'http://newsapi.org/' : 'https://nomoreparties.co/news/';
+    return fetch(`${protocol}v2/everything?q=${data.keyword}&from=${this._getFrom()}&to=${this._getTo()}&pageSize=${this.options.pageSize}&sortBy=publishedAt&apiKey=${this.options.apiKey}`, {
         method: 'GET',
       })
       .then((res) => {

@@ -51,6 +51,15 @@ export default class Popup {
     .then(() => {
       this.close();
     })
+    .then(() => {
+      this.api.getAllUserArticles()
+        .then((res) => {
+          localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    })
     .catch((err) => {
       this.login.setServerError(err.message);
     });

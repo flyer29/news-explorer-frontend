@@ -8,7 +8,7 @@ export default class HeaderArticles extends Header {
     this.headerNav = this.element.querySelector('.header__nav');
     this.link = this.element.querySelector('.header__link_type_articles');
     this.burger = this.element.querySelector('.header__button');
-
+    this.linkMenu = this.element.querySelectorAll('.header__link');
   }
 
   render = (props) => {
@@ -19,6 +19,10 @@ export default class HeaderArticles extends Header {
     this.api.logout()
       .then(() => {
         this.render(false);
+      })
+      .then(() => {
+        localStorage.removeItem('user')
+        localStorage.removeItem('userArticles');
       })
       .then(() => {
         window.location.reload();
@@ -34,6 +38,9 @@ export default class HeaderArticles extends Header {
     this.burger.classList.add('header__button_close');
     this.overlay.classList.remove('hidden');
     this.headerNav.classList.add('show');
+    this.linkMenu.forEach((item) => {
+      item.classList.add('header__link_menu');
+    });
     this._setListener();
   }
 
@@ -43,6 +50,9 @@ export default class HeaderArticles extends Header {
     this.burger.classList.remove('header__button_close');
     this.overlay.classList.add('hidden');
     this.headerNav.classList.remove('show');
+    this.linkMenu.forEach((item) => {
+      item.classList.remove('header__link_menu');
+    });
     this._removeListener();
   }
 
@@ -53,4 +63,15 @@ export default class HeaderArticles extends Header {
   _removeListener = () => {
     this.burger.removeEventListener('click', this.closeMenu);
   }
+
+  /* openMenu = () => {
+    this.headerNav.classList.toggle('show');
+    this.logoutButton.classList.toggle('button_logout_menu');
+    this.headerButton.classList.toggle('header__button_close');
+    this.headerTitle.classList.toggle('header__title_menu');
+    this.overlay.classList.toggle('hidden');
+    this.headerLinks.forEach((item) => {
+    item.classList.toggle('header__link_menu');
+  });
+  } */
 }

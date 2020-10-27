@@ -1,6 +1,7 @@
 import createCardDate from '../utils/createCardDate';
 import checkImage from '../utils/checkImage';
 import getKeyWord from '../utils/getKeyword';
+import checkSavedArticles from '../utils/checkSavedArticles';
 
 export default class Card {
   constructor(element, defaultImage, container, api) {
@@ -11,6 +12,7 @@ export default class Card {
   }
 
   create = (item) => {
+      /* console.log(checkSavedArticles(item)); */
       const container = this.element.content.firstElementChild.cloneNode(true);
       const card = container.firstElementChild;
       card.setAttribute('href', `${item.url}`);
@@ -19,12 +21,15 @@ export default class Card {
       } else {
         card.querySelector('.card__image').setAttribute('src', `${item.urlToImage}`);
       }
-      card.querySelector('.card__date').textContent = createCardDate(item.publishedAt);
+      card.querySelector('.card__date').textContent = createCardDate(item.publishedAt );
       card.querySelector('.card__title').textContent = item.title;
       card.querySelector('.card__text').textContent = item.description;
       card.querySelector('.card__source').textContent = item.source.name;
       card.querySelector('.card__keyword').textContent = getKeyWord();
       this.saveButton = container.querySelector('.card__save-button');
+      /* if (checkSavedArticles(item)) {
+        this.saveButton.classList.add('card__save-button_type_saved');
+      }; */
       this.setListener();
       return container;
   }
@@ -57,6 +62,15 @@ export default class Card {
         this.saveButton.parentNode.querySelector('.card__id').textContent = res.data._id;
         this.saveButton.classList.add('card__save-button_type_saved');
       })
+      .then(() => {
+        this.api.getAllUserArticles()
+        .then((res) => {
+          localStorage.setItem('userArticles', JSON.stringify(res.data));
+        })
+        .catch((err) => {
+          alert(err.message);
+        })
+      })
       .catch((err) => {
         alert(err.message);
       });
@@ -75,6 +89,15 @@ export default class Card {
     .then((res) => {
       alert(res.message);
       this.saveButton.classList.remove('card__save-button_type_saved');
+    })
+    .then(() => {
+      this.api.getAllUserArticles()
+        .then((res) => {
+          localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
+        })
+        .catch((err) => {
+          alert(err.message);
+        })
     })
     .catch((err) => {
       alert(err.message);
@@ -121,4 +144,6 @@ export default class Card {
     const keyword = this.saveButton.parentNode.querySelector('.card__keyword').textContent;
     return keyword;
   }
+
 }
+

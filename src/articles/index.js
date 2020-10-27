@@ -41,9 +41,12 @@ mainApi.getUserData()
     window.location.href = '../index.html';
   });
 
+/* cardList.renderArticles(); */
+
+
 mainApi.getAllUserArticles()
   .then((res) => {
-    localStorage.setItem('userArticles', JSON.stringify(res.data));
+    localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
   })
   .then(() => {
     cardList.renderArticles();

@@ -20,6 +20,37 @@ export default class SavedNewsCard {
     card.querySelector('.card__keyword').textContent = item.keyword;
     card.querySelector('.card__id').textContent = item._id;
     this.trashButton = container.querySelector('.card__trash-button');
+    this.setListener();
     return container;
+  }
+
+  _deleteCard = () => {
+    this.api.deleteArticle(this._getCardId())
+    .then(() => {
+      this.api.getAllUserArticles()
+        .then((res) => {
+          localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
+        })
+        .then(() => {
+          this.trashButton.parentNode.remove();
+        })
+        .catch((err) => {
+          alert(err.message);
+        })
+    })
+    .catch((err) => {
+      alert(err.message);
+    });
+  }
+
+  _getCardId = () => {
+    const data = {
+      id: this.trashButton.parentNode.querySelector('.card__id').textContent,
+    }
+    return data;
+  }
+
+  setListener = () => {
+    this.trashButton.addEventListener('click', this._deleteCard);
   }
 }

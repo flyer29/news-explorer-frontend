@@ -15,6 +15,11 @@
   background-color: #2a65cc;
 }
 
+.button_search:disabled {
+  color: #b6bcbf;
+  background-color: #e6e8eb;
+}
+
 @media screen and (max-width: 1280px) {
   .button_search {
     height: 56px;

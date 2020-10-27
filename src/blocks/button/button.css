@@ -9,6 +9,8 @@
   border:  none;
   cursor: pointer;
   background: none;
+  outline: none;
+  appearance: none;
 }
 
 .button:disabled:hover {

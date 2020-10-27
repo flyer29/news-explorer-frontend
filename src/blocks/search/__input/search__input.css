@@ -20,6 +20,14 @@
   font-size: 16px;
 }
 
+.search__input:invalid {
+  box-shadow: none;
+}
+
+.search__input:focus {
+  outline: none;
+}
+
 .search__input:active {
   outline: none;
 }

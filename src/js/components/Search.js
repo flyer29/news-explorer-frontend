@@ -3,7 +3,7 @@ export default class Search {
     this.element = element;
     this.api = api;
     this.cardList = cardList;
-    this.form = this.element.querySelector('.search__input');
+    this.input = this.element.querySelector('.search__input');
   }
 
   getArticles = (event) => {
@@ -19,8 +19,8 @@ export default class Search {
         this.cardList.renderError('Ничего не найдено');
         return;
       } else {
-        localStorage.setItem('articles', '[]');
         localStorage.setItem('articles', `${JSON.stringify(res.articles)}`);
+        localStorage.setItem('keyword', `${document.querySelector('.search__input').value}`)
       }
     })
     .then(() => {
@@ -39,7 +39,7 @@ export default class Search {
   }
 
   getKeyWord = () => {
-    return this.form.value;
+    return this.input.value;
   }
 
   _createData = () => {

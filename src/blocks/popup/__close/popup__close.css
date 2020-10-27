@@ -8,6 +8,8 @@
   background-image: url('../../../images/back-popup.png');
   border: none;
   background-color: rgba(0,0,0, 0);
+  outline: none;
+  appearance: none;
 }
 
 @media screen and (max-width: 540px) {

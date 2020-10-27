@@ -24,6 +24,7 @@ export default class NewsCardList {
     }
     this.element.parentNode.classList.remove('hidden');
     this.card.renderIcon();
+    this.setListener();
   }
 
   clearContent = () => {
