@@ -18,6 +18,7 @@ const logoutButton = header.querySelector('.button_logout');
 const headerBurger = header.querySelector('.header__button');
 const cardTemplate = document.querySelector('.card-template');
 const cardsContainer = document.querySelector('.search-results__container');
+const articlesInfo = document.querySelector('.articles');
 
 const mainApi = new MainApi(config);
 const headerArticles = new HeaderArticles(header, mainApi);
@@ -54,7 +55,7 @@ mainApi.getAllUserArticles()
     console.log(err.message);
   });
 
-renderUserInfo();
+renderUserInfo(articlesInfo);
 
 headerBurger.addEventListener('click', headerArticles.openMenu);
 logoutButton.addEventListener('click', headerArticles.logout);
