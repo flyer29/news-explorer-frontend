@@ -63,15 +63,4 @@ export default class HeaderArticles extends Header {
   _removeListener = () => {
     this.burger.removeEventListener('click', this.closeMenu);
   }
-
-  /* openMenu = () => {
-    this.headerNav.classList.toggle('show');
-    this.logoutButton.classList.toggle('button_logout_menu');
-    this.headerButton.classList.toggle('header__button_close');
-    this.headerTitle.classList.toggle('header__title_menu');
-    this.overlay.classList.toggle('hidden');
-    this.headerLinks.forEach((item) => {
-    item.classList.toggle('header__link_menu');
-  });
-  } */
 }

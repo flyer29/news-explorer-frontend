@@ -1,18 +1,18 @@
 import createCardDate from '../utils/createCardDate';
 import checkImage from '../utils/checkImage';
 import getKeyWord from '../utils/getKeyword';
-import checkSavedArticles from '../utils/checkSavedArticles';
+/* import checkSavedArticles from '../utils/checkSavedArticles'; */
 
 export default class Card {
-  constructor(element, defaultImage, container, api) {
+  constructor(element, defaultImage, container, api, checkSavedArticles) {
     this.element = element;
     this.container = container;
     this.defaultImage = defaultImage;
     this.api = api;
+    this.checkSavedArticles = checkSavedArticles;
   }
 
   create = (item) => {
-      /* console.log(checkSavedArticles(item)); */
       const container = this.element.content.firstElementChild.cloneNode(true);
       const card = container.firstElementChild;
       card.setAttribute('href', `${item.url}`);
@@ -27,9 +27,11 @@ export default class Card {
       card.querySelector('.card__source').textContent = item.source.name;
       card.querySelector('.card__keyword').textContent = getKeyWord();
       this.saveButton = container.querySelector('.card__save-button');
-      /* if (checkSavedArticles(item)) {
+      if (this.checkSavedArticles(item)) {
+        card.querySelector('.card__id').textContent = this.checkSavedArticles(item).id;
+        card.querySelector('.card__keyword').textContent = this.checkSavedArticles(item).keyword;
         this.saveButton.classList.add('card__save-button_type_saved');
-      }; */
+      };
       this.setListener();
       return container;
   }
@@ -65,7 +67,7 @@ export default class Card {
       .then(() => {
         this.api.getAllUserArticles()
         .then((res) => {
-          localStorage.setItem('userArticles', JSON.stringify(res.data));
+          localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
         })
         .catch((err) => {
           alert(err.message);

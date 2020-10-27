@@ -44,7 +44,7 @@ import checkSavedArticles from './js/utils/checkSavedArticles';
   const mainApi = new MainApi(config);
   const newsApi = new NewsApi(newsApiConfig);
   const card = new Card(cardTemplate, defaultImage, cardsContainer, mainApi);
-  const createNewCard = (...arg) => new Card(cardTemplate, defaultImage, cardsContainer, mainApi).create(...arg);
+  const createNewCard = (...arg) => new Card(cardTemplate, defaultImage, cardsContainer, mainApi, checkSavedArticles).create(...arg);
   const newsCardList = new NewsCardList(createNewCard, cardsContainer, searchResults, cardsAmount, card);
   const searchForm = new SearchForm(searchContainer);
   const loginForm = new Form(loginPopupTemplate);

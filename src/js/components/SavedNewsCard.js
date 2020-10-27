@@ -20,7 +20,7 @@ export default class SavedNewsCard {
     card.querySelector('.card__keyword').textContent = item.keyword;
     card.querySelector('.card__id').textContent = item._id;
     this.trashButton = container.querySelector('.card__trash-button');
-    this.setListener();
+    this._setListener();
     return container;
   }
 
@@ -50,7 +50,7 @@ export default class SavedNewsCard {
     return data;
   }
 
-  setListener = () => {
+  _setListener = () => {
     this.trashButton.addEventListener('click', this._deleteCard);
   }
 }

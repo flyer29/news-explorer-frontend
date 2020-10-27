@@ -1,7 +1,7 @@
 const checkSavedArticles = (card) => {
   if (localStorage.getItem('articles') && localStorage.getItem('userArticles')) {
     const userArticles = JSON.parse(localStorage.getItem('userArticles'));
-    let isSaved = false;
+    let data = false;
     userArticles.forEach((element) => {
       if (
         element.date.slice(0, 10) === card.publishedAt.slice(0, 10)
@@ -10,10 +10,13 @@ const checkSavedArticles = (card) => {
         && element.source === card.source.name
         && element.text === card.description
       ) {
-        isSaved = true;
+        data = {
+          id: element._id,
+          keyword: element.keyword,
+        };
       }
     });
-    return isSaved;
+    return data;
   }
 };
 

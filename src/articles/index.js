@@ -3,9 +3,11 @@ import HeaderArticles from '../js/components/HeaderArticles';
 import MainApi from '../js/api/MainApi';
 import SavedNewsCard from '../js/components/SavedNewsCard';
 import SavedNewsCardList from '../js/components/SavedNewsCardList';
+import renderUserInfo from '../js/utils/renderUserInfo';
 
+const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.mynewsapp.tk';
 const config = {
-  baseUrl: 'http://localhost:3000',
+  baseUrl: `${baseUrl}`,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -41,9 +43,6 @@ mainApi.getUserData()
     window.location.href = '../index.html';
   });
 
-/* cardList.renderArticles(); */
-
-
 mainApi.getAllUserArticles()
   .then((res) => {
     localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
@@ -55,25 +54,7 @@ mainApi.getAllUserArticles()
     console.log(err.message);
   });
 
-
-
-/* const headerButton = document.querySelector('.header__button');
-const headerTitle = document.querySelector('.header__title');
-const headerLinks = document.querySelectorAll('.header__link');
-const overlay = document.querySelector('.header__overlay');
-const headerNav = document.querySelector('.header__nav');
-const logoutButton = document.querySelector('.button_logout_articles');
-
-headerButton.addEventListener('click', () => {
-  headerNav.classList.toggle('show');
-  logoutButton.classList.toggle('button_logout_menu');
-  headerButton.classList.toggle('header__button_close');
-  headerTitle.classList.toggle('header__title_menu');
-  overlay.classList.toggle('hidden');
-  headerLinks.forEach((item) => {
-    item.classList.toggle('header__link_menu');
-  }); */
-
+renderUserInfo();
 
 headerBurger.addEventListener('click', headerArticles.openMenu);
 logoutButton.addEventListener('click', headerArticles.logout);

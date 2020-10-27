@@ -54,10 +54,11 @@ export default class Popup {
     .then(() => {
       this.api.getAllUserArticles()
         .then((res) => {
+          console.log(res.json());
           localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
         })
         .catch((err) => {
-          alert(err);
+          throw err.message;
         });
     })
     .catch((err) => {

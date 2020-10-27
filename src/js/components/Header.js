@@ -32,7 +32,6 @@ export default class Header {
       .then(() => {
         localStorage.removeItem('user')
         localStorage.removeItem('userArticles');
-        /* localStorage.removeItem('articles'); */
       })
       .then(() => {
         this.card.renderIcon();
