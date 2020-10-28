@@ -1,9 +1,11 @@
 import createCardDate from '../utils/createCardDate';
+/* import renderUserInfo from '../utils/renderUserInfo'; */
 
 export default class SavedNewsCard {
-  constructor(element, container, api) {
+  constructor(element, container, api, articlesData) {
     this.element = element;
     this.container = container;
+    this.articlesData = articlesData;
     this.api = api;
   }
 
@@ -29,17 +31,24 @@ export default class SavedNewsCard {
     .then(() => {
       this.api.getAllUserArticles()
         .then((res) => {
-          localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
-        })
-        .then(() => {
+            localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
           this.trashButton.parentNode.remove();
         })
-        .catch((err) => {
-          alert(err.message);
+        .then(() => {
+          this.articlesData.renderUserInfo();
         })
+        .catch((err) => {
+          if (err.message === 'У вас нет сохранённых статей') {
+            this.trashButton.parentNode.remove();
+          localStorage.removeItem('userArticles');
+          this.articlesData.renderUserInfo();
+          throw err.message;
+          }
+          throw err;
+        });
     })
     .catch((err) => {
-      alert(err.message);
+      throw err;
     });
   }
 

@@ -1,12 +1,14 @@
 export default class NewsApi {
-  constructor(options) {
+  constructor(options, getFrom, getTo) {
     this.options = options;
     this.from = this.options.from;
+    this.domen = options.domen;
+    this.getFrom = getFrom;
+    this.getTo = getTo;
   }
 
   getArticles = (data) => {
-    const protocol = process.env.NODE_ENV === 'development' ? 'http://newsapi.org/' : 'https://nomoreparties.co/news/';
-    return fetch(`${protocol}v2/everything?q=${data.keyword}&from=${this._getFrom()}&to=${this._getTo()}&pageSize=${this.options.pageSize}&sortBy=publishedAt&apiKey=${this.options.apiKey}`, {
+    return fetch(`${this.domen}v2/everything?q=${data.keyword}&from=${this.getFrom(this.from)}&to=${this.getTo()}&pageSize=${this.options.pageSize}&sortBy=publishedAt&apiKey=${this.options.apiKey}`, {
         method: 'GET',
       })
       .then((res) => {
@@ -19,14 +21,5 @@ export default class NewsApi {
       .catch((err) => {
         throw err;
       });
-  }
-
-  _getFrom = () => {
-    const from = new Date().getTime() - (this.from * 24 * 3600 * 1000);
-    return new Date(from).toISOString().slice(0, 10);
-  };
-
-  _getTo = () => {
-    return new Date().toISOString().slice(0, 10);
-  }
+    }
 }

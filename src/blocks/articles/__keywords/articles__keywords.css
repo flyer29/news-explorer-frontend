@@ -1,5 +1,6 @@
 .articles__keywords {
   font-weight: bold;
+  text-transform: capitalize;
 }
 
 @media screen and (max-width: 1279px) {

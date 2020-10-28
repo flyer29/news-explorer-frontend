@@ -9,16 +9,16 @@ export default class NewsCardList {
     this.createCardFunction = createCardFunction;
     this.element = element;
     this.button = this.container.querySelector('.button_more');
-    this.n = 0;
+    this.iteration = 0;
   }
 
   renderResults = () => {
     const articles = JSON.parse(localStorage.getItem('articles'));
-    const part = articles.splice(this.amount * this.n, this.amount);
-    if ((part.length < this.amount)  || (this.amount * this.n + this.amount === articles.length)) {
+    const part = articles.splice(this.amount * this.iteration, this.amount);
+    if ((this.amount % part.length > 1)  || (this.amount * this.iteration === articles.length)) {
       this._addCard(part);
       this.button.classList.add('hidden');
-      this.n = 0;
+      this.iteration = 0;
     } else {
       this._addCard(part);
     }
@@ -53,8 +53,8 @@ export default class NewsCardList {
   }
 
   _showMore = () => {
-    this.n += 1;
-    this.renderResults()
+    this.iteration += 1;
+    this.renderResults();
   }
 
   _addCard = (array) => {

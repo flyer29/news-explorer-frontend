@@ -3,7 +3,7 @@ import HeaderArticles from '../js/components/HeaderArticles';
 import MainApi from '../js/api/MainApi';
 import SavedNewsCard from '../js/components/SavedNewsCard';
 import SavedNewsCardList from '../js/components/SavedNewsCardList';
-import renderUserInfo from '../js/utils/renderUserInfo';
+import ArticlesData from '../js/components/ArticlesData';
 
 const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.mynewsapp.tk';
 const config = {
@@ -19,14 +19,16 @@ const headerBurger = header.querySelector('.header__button');
 const cardTemplate = document.querySelector('.card-template');
 const cardsContainer = document.querySelector('.search-results__container');
 const articlesInfo = document.querySelector('.articles');
-
+const articlesData = new ArticlesData(articlesInfo);
 const mainApi = new MainApi(config);
 const headerArticles = new HeaderArticles(header, mainApi);
-const card = new SavedNewsCard(cardTemplate, cardsContainer, mainApi);
+
+const card = new SavedNewsCard(cardTemplate, cardsContainer, mainApi, articlesData);
 const createNewCard = (...arg) => new SavedNewsCard(
   cardTemplate,
   cardsContainer,
   mainApi,
+  articlesData,
 ).create(...arg);
 const cardList = new SavedNewsCardList(cardsContainer, createNewCard, card);
 
@@ -52,10 +54,9 @@ mainApi.getAllUserArticles()
     cardList.renderArticles();
   })
   .catch((err) => {
-    console.log(err.message);
+    throw err;
   });
 
-renderUserInfo(articlesInfo);
-
+articlesData.renderUserInfo();
 headerBurger.addEventListener('click', headerArticles.openMenu);
 logoutButton.addEventListener('click', headerArticles.logout);

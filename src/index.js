@@ -3,18 +3,19 @@ import Popup from './js/components/Popup';
 import Header from './js/components/Header';
 import Form from './js/components/Form';
 import MainApi from './js/api/MainApi';
-import Card from './js/components/Card';
+import NewsCard from './js/components/NewsCard';
 import SearchForm from './js/components/SearchForm';
 import Search from './js/components/Search';
 import NewsApi from './js/api/NewsApi';
 import NewsCardList from './js/components/NewsCardList';
 import checkSavedArticles from './js/utils/checkSavedArticles';
+import utils from './js/utils/utils';
 
 (function () {
   const root = document.querySelector('.popup');
-  const loginPopupTemplate = document.querySelector('#login');
-  const signUpPopupTemplate = document.querySelector('#signup');
-  const cardTemplate = document.querySelector('#card');
+  const loginPopupTemplate = document.querySelector('.login');
+  const signUpPopupTemplate = document.querySelector('.signup');
+  const cardTemplate = document.querySelector('.card');
   const searchElement = document.querySelector('.search');
   const headerElement = document.querySelector('.header');
   const logoutButton = headerElement.querySelector('.button_logout');
@@ -24,30 +25,33 @@ import checkSavedArticles from './js/utils/checkSavedArticles';
   const formOfSearch = document.querySelector('.search__form');
   const searchResults = document.querySelector('.search-results');
   const cardsContainer = document.querySelector('.search-results__container');
+  const { getFrom, getTo } = utils;
+
+
   const cardsAmount = 3;
   const defaultImage = './images/glass.png';
 
-  const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.mynewsapp.tk';
-  const config = {
-    baseUrl: `${baseUrl}`,
+  const mainApiConfig = {
+    baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.mynewsapp.tk',
     headers: {
       'Content-Type': 'application/json',
     },
   };
   const newsApiConfig = {
+    domen: process.env.NODE_ENV === 'development' ? 'http://newsapi.org/' : 'https://nomoreparties.co/news/',
     apiKey: 'a99a8e317b0f460593fb8974cb00701e',
     from: 7,
     to: new Date(),
-    pageSize: 12,
+    pageSize: process.env.NODE_ENV === 'development' ? 12 : 100,
   };
 
-  const mainApi = new MainApi(config);
-  const newsApi = new NewsApi(newsApiConfig);
-  const card = new Card(cardTemplate, defaultImage, cardsContainer, mainApi);
-  const createNewCard = (...arg) => new Card(cardTemplate, defaultImage, cardsContainer, mainApi, checkSavedArticles).create(...arg);
+  const mainApi = new MainApi(mainApiConfig);
+  const newsApi = new NewsApi(newsApiConfig, getFrom, getTo);
+  const card = new NewsCard(cardTemplate, defaultImage, cardsContainer, mainApi);
+  const createNewCard = (...arg) => new NewsCard(cardTemplate, defaultImage, cardsContainer, mainApi, checkSavedArticles).create(...arg);
   const newsCardList = new NewsCardList(createNewCard, cardsContainer, searchResults, cardsAmount, card);
-  const searchForm = new SearchForm(searchContainer);
-  const loginForm = new Form(loginPopupTemplate);
+  const searchForm = new SearchForm(searchContainer, mainApi);
+  const loginForm = new Form(loginPopupTemplate, mainApi);
   const signUpForm = new Form(signUpPopupTemplate, mainApi);
   const search = new Search(searchElement, newsApi, newsCardList);
   const header = new Header(headerElement, mainApi, card);
@@ -56,6 +60,7 @@ import checkSavedArticles from './js/utils/checkSavedArticles';
 
   mainApi.getUserData()
     .then((res) => {
+
       localStorage.setItem('user', `${JSON.stringify(res.data)}`);
       const props = {
         isLoggedIn: true,
@@ -63,25 +68,26 @@ import checkSavedArticles from './js/utils/checkSavedArticles';
       };
       header.render(props);
     })
-    .then(() => {
-      if (localStorage.getItem('articles')) {
+    /* if (localStorage.getItem('articles')) {
         newsCardList.renderResults();
-      }
-    })
+    } */
     .catch((err) => {
-      localStorage.removeItem('user');
-      localStorage.removeItem('userArticles');
-      console.log(err.message);
+      /* localStorage.removeItem('user');
+      localStorage.removeItem('userArticles'); */
+      return err;
     });
 
-  /* mainApi.getAllUserArticles()
+  mainApi.getAllUserArticles()
     .then((res) => {
-      localStorage.setItem('userArticles', JSON.stringify(res.data));
+      localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
+    })
+    .then(() => {
+      newsCardList.renderResults();
     })
     .catch((err) => {
       console.log(err.message);
-      localStorage.removeItem('articles');
-    }); */
+      // localStorage.removeItem('userArticles');
+    });
 
 
   /* checkSavedArticles(); */

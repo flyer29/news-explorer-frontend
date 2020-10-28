@@ -64,18 +64,20 @@
     </section>
     <section class="about">
       <picture class="about__avatar">
-        <img class="about__image" src="<%=require('./images/author.png')%>"
+        <img class="about__image" src="<%=require('./images/myphoto-min.jpg')%>"
           alt="фотография молодой девушки в солнечных очках">
       </picture>
       <blockquote class="about__description">
         <h2 class="about__title">Oб авторе</h2>
         <p class="about__text">
-          Это блок с описанием автора проекта. Здесь следует указать, как вас зовут,
-          чем вы занимаетесь, какими технологиями разработки владеете.
+          Здравствуйте, меня зовут Андрей, я начинающий веб-разработчик из города Краснодара.
+        </p>
+        <p class="about__text">В течение девяти месяцев проходил онлайн-обучение в Яндекс.Практикум.
+          За время учёбы освоил HTML5, CSS3, JavaScript, работу с Git, GitHub,
+          Webpack, Node.js, Express.js.
         </p>
         <p class="about__text">
-          Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились,
-          и чем можете помочь потенциальным заказчикам.
+          Буду рад помочь вам при создании вашего интернет-сайта или веб-приложения.
         </p>
       </blockquote>
     </section>
@@ -115,7 +117,7 @@
       </div>
     </div>
 
-    <template id="card">
+    <template class="card">
       <div class="card-wrapper">
         <a class="card" href="https://ria.ru" target="_blank">
           <img class="card__image" src="<%=require('./images/glass.png')%>" alt="иллюстрация к статье">
@@ -132,7 +134,7 @@
       </div>
     </template>
 
-    <template id="signup">
+    <template class="signup">
       <form class="popup__form">
         <span class="popup__label">Email</span>
         <input class="popup__input" name="email" type="email" placeholder="Введите почту" required>
@@ -150,7 +152,7 @@
       </form>
     </template>
 
-    <template id="login">
+    <template class="login">
       <form class="popup__form">
         <span class="popup__label">Email</span>
         <input class="popup__input" name="email" type="email" placeholder="Введите почту" required>

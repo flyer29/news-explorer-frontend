@@ -2,7 +2,7 @@ export default class Form {
   constructor(template, api) {
     this.template = template;
     this.api = api;
-    this.form = template.content.querySelector('.popup__form').cloneNode(true);
+    this.form = this.template.content.querySelector('.popup__form').cloneNode(true);
     this.button = this.form.querySelector('.popup__button');
     this.errorElement = this.form.querySelector('.popup__server-error');
     this.inputs = Array.from(this.form.querySelectorAll('input'));
