@@ -1,6 +1,7 @@
 export default class SearchForm {
-  constructor(element) {
+  constructor(element, messages) {
     this.element = element;
+    this.messages = messages;
     this.form = element.querySelector('.search__form');
     this.error = element.querySelector('.search__error');
     this.inputs = Array.from(this.form.querySelectorAll('input'));
@@ -9,19 +10,10 @@ export default class SearchForm {
 
   _validateInputElement = (input) => {
     if ((input.validity.tooShort || input.validity.tooLong) && input.type === 'text') {
-      return 'Должно быть от 2 до 30 символов';
+      return this.messages.TEXT_NOT_VALID;
     }
     if (input.validity.valueMissing) {
-      return 'Это обязательное поле';
-    }
-    if (input.type === 'email' && input.validity.typeMismatch) {
-      return 'Неправильный формат Email';
-    }
-    if(input.name === 'name' && input.validity.patternMismatch) {
-      return 'Необходимо ввести корректное имя';
-    }
-    if(input.type == 'password' && input.validity.tooShort) {
-      return 'Пароль должен содержать не менее восьми символов';
+      return this.messages.VALUE_MISSING;
     }
     return '';
   }

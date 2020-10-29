@@ -37,7 +37,7 @@ export default class Header {
         this.card.renderIcon();
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       })
   }
 
@@ -62,4 +62,4 @@ export default class Header {
   _removeListener = () => {
     this.burger.removeEventListener('click', this.closeMenu);
   }
-}
+};

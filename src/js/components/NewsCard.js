@@ -8,27 +8,27 @@ export default class NewsCard {
   }
 
   create = (item) => {
-      const container = this.element.content.firstElementChild.cloneNode(true);
-      const card = container.firstElementChild;
-      card.setAttribute('href', `${item.url}`);
-      if (item.urlToImage === null) {
-        card.querySelector('.card__image').setAttribute('src', `${this.defaultImage}`);
-      } else {
-        card.querySelector('.card__image').setAttribute('src', `${item.urlToImage}`);
-      }
-      card.querySelector('.card__date').textContent = this._createCardDate(item.publishedAt );
-      card.querySelector('.card__title').textContent = item.title;
-      card.querySelector('.card__text').textContent = item.description;
-      card.querySelector('.card__source').textContent = item.source.name;
-      card.querySelector('.card__keyword').textContent = this._getKeyWord();
-      this.saveButton = container.querySelector('.card__save-button');
-      if (this.checkSavedArticles(item)) {
-        card.querySelector('.card__id').textContent = this.checkSavedArticles(item).id;
-        card.querySelector('.card__keyword').textContent = this.checkSavedArticles(item).keyword;
-        this.saveButton.classList.add('card__save-button_type_saved');
-      };
-      this.setListener();
-      return container;
+    const container = this.element.content.firstElementChild.cloneNode(true);
+    const card = container.firstElementChild;
+    card.setAttribute('href', `${item.url}`);
+    if (item.urlToImage === null) {
+      card.querySelector('.card__image').setAttribute('src', `${this.defaultImage}`);
+    } else {
+      card.querySelector('.card__image').setAttribute('src', `${item.urlToImage}`);
+    }
+    card.querySelector('.card__date').textContent = this._createCardDate(item.publishedAt);
+    card.querySelector('.card__title').textContent = item.title;
+    card.querySelector('.card__text').textContent = item.description;
+    card.querySelector('.card__source').textContent = item.source.name;
+    card.querySelector('.card__keyword').textContent = this._getKeyWord();
+    this.saveButton = container.querySelector('.card__save-button');
+    if (this.checkSavedArticles(item)) {
+      card.querySelector('.card__id').textContent = this.checkSavedArticles(item).id;
+      card.querySelector('.card__keyword').textContent = this.checkSavedArticles(item).keyword;
+      this.saveButton.classList.add('card__save-button_type_saved');
+    };
+    this.setListener();
+    return container;
   }
 
   renderIcon = () => {
@@ -37,7 +37,7 @@ export default class NewsCard {
       if (!localStorage.getItem('user')) {
         this._setCardButtonDisable(item);
       } else {
-      this._setCardButtonEnable(item);
+        this._setCardButtonEnable(item);
       }
     });
   }
@@ -52,7 +52,7 @@ export default class NewsCard {
     element.removeAttribute('disabled');
   }
 
-  _saveCard  = () => {
+  _saveCard = () => {
     this.api.createArticle(this._createData())
       .then((res) => {
         this.saveButton.parentNode.querySelector('.card__id').textContent = res.data._id;
@@ -60,12 +60,12 @@ export default class NewsCard {
       })
       .then(() => {
         this.api.getAllUserArticles()
-        .then((res) => {
-          localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
-        })
-        .catch((err) => {
-          alert(err.message);
-        })
+          .then((res) => {
+            localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
+          })
+          .catch((err) => {
+            alert(err.message);
+          })
       })
       .catch((err) => {
         alert(err.message);
@@ -76,32 +76,32 @@ export default class NewsCard {
     if (this.saveButton.classList.contains('card__save-button_type_saved')) {
       this._deleteCard();
     } else {
-     this._saveCard();
+      this._saveCard();
     }
   }
 
   _deleteCard = () => {
     this.api.deleteArticle(this._getCardId())
-    .then((res) => {
-      alert(res.message);
-      this.saveButton.classList.remove('card__save-button_type_saved');
-    })
-    .then(() => {
-      this.api.getAllUserArticles()
-        .then((res) => {
-          localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
-        })
-        .catch((err) => {
-          if (err.message === 'У вас нет сохранённых статей') {
-          localStorage.removeItem('userArticles');
-          throw err.message;
-          }
-          throw err;
-        })
-    })
-    .catch((err) => {
-      alert(err.message);
-    });
+      .then((res) => {
+        alert(res.message);
+        this.saveButton.classList.remove('card__save-button_type_saved');
+      })
+      .then(() => {
+        this.api.getAllUserArticles()
+          .then((res) => {
+            localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
+          })
+          .catch((err) => {
+            if (err.message === 'У вас нет сохранённых статей') {
+              localStorage.removeItem('userArticles');
+              throw err.message;
+            }
+            throw err;
+          })
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   }
 
   _getCardId = () => {
@@ -169,13 +169,12 @@ export default class NewsCard {
       return localStorage.getItem('keyword');
     }
     return document.querySelector('.search__input').value;
-  };
+  }
 
   _checkImage = (element) => {
     if (element === null) {
       return 'https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80';
     }
     return element;
-  };
-
+  }
 }

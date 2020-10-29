@@ -1,7 +1,7 @@
-import Header from './Header';
-export default class HeaderArticles extends Header {
+export default class HeaderArticles {
   constructor(element, api) {
-    super(element, api);
+    this.element = element;
+    this.api = api;
     this.headerTitle = this.element.querySelector('.header__title');
     this.logoutButton = this.element.querySelector('.button_logout_articles');
     this.overlay = this.element.querySelector('.header__overlay');
@@ -28,7 +28,7 @@ export default class HeaderArticles extends Header {
         window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       })
   }
 
@@ -63,4 +63,4 @@ export default class HeaderArticles extends Header {
   _removeListener = () => {
     this.burger.removeEventListener('click', this.closeMenu);
   }
-}
+};

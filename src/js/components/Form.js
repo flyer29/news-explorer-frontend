@@ -1,7 +1,8 @@
 export default class Form {
-  constructor(template, api) {
+  constructor(template, api, messages) {
     this.template = template;
     this.api = api;
+    this.messages = messages;
     this.form = this.template.content.querySelector('.popup__form').cloneNode(true);
     this.button = this.form.querySelector('.popup__button');
     this.errorElement = this.form.querySelector('.popup__server-error');
@@ -10,19 +11,19 @@ export default class Form {
 
   _validateInputElement = (input) => {
     if ((input.validity.tooShort || input.validity.tooLong) && input.type === 'text') {
-      return 'Должно быть от 2 до 30 символов';
+      return this.messages.TEXT_NOT_VALID;
     }
     if (input.validity.valueMissing) {
-      return 'Это обязательное поле';
+      return this.messages.VALUE_MISSING;
     }
     if (input.type === 'email' && input.validity.typeMismatch) {
-      return 'Неправильный формат Email';
+      return this.messages.EMAIL_NOT_VALID;
     }
-    if(input.name === 'name' && input.validity.patternMismatch) {
-      return 'Необходимо ввести корректное имя';
+    if (input.name === 'name' && input.validity.patternMismatch) {
+      return this.messages.NAME_NOT_VALID;
     }
-    if(input.type == 'password' && input.validity.tooShort) {
-      return 'Пароль должен содержать не менее восьми символов';
+    if (input.type == 'password' && input.validity.tooShort) {
+      return this.messages.PASSWORD_NOT_VALID;
     }
     return '';
   }
@@ -36,12 +37,12 @@ export default class Form {
   }
 
   _validateForm = () => {
-      this.isValid = true;
+    this.isValid = true;
     this.inputs.forEach((item) => {
       if (this._validateInputElement(item) !== '') {
         this.isValid = false;
       }
-      if(this.isValid) {
+      if (this.isValid) {
         this._makeButtonEnable()
       } else {
         this._makeButtonDisable();
@@ -57,8 +58,8 @@ export default class Form {
     const data = {};
     this.form.elements.forEach((item) => {
       if (item.name !== 'button') {
-         data[item.name] = item.value;
-       };
+        data[item.name] = item.value;
+      };
     });
     return data;
   }
@@ -83,4 +84,4 @@ export default class Form {
     this.form.addEventListener('input', this._validateForm);
     this.form.addEventListener('submit', this.signUp);
   }
-}
+};

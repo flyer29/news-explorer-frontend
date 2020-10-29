@@ -1,5 +1,5 @@
 export default class Popup {
-  constructor(element, signUp, login, api, header, card) {
+  constructor(element, signUp, login, api, header, card, messages) {
     this.element = element;
     this.header = header;
     this.title = this.element.querySelector('.popup__title');
@@ -8,6 +8,7 @@ export default class Popup {
     this.login = login;
     this.api = api;
     this.card = card;
+    this.messages = messages;
     this.container = this.element.querySelector('.popup__container');
     this.signUpForm = signUp.form;
     this.loginForm = login.form;
@@ -39,39 +40,39 @@ export default class Popup {
   sendLoginForm = (event) => {
     event.preventDefault();
     this.api.signin(this.login.getInfo())
-    .then((res) => {
-      localStorage.setItem('user', `${JSON.stringify(res)}`)
-      const props = {
-        isLoggedIn: true,
-        userName: JSON.parse(localStorage.getItem('user')).name,
+      .then((res) => {
+        localStorage.setItem('user', `${JSON.stringify(res)}`)
+        const props = {
+          isLoggedIn: true,
+          userName: JSON.parse(localStorage.getItem('user')).name,
         }
-      this.header.render(props);
-      this.card.renderIcon();
-    })
-    .then(() => {
-      this.close();
-    })
-    .then(() => {
-      this.api.getAllUserArticles()
-        .then((res) => {
-          localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
-        })
-        .catch((err) => {
-          throw err.message;
-        });
-    })
-    .catch((err) => {
-      this.login.setServerError(err.message);
-    });
+        this.header.render(props);
+        this.card.renderIcon();
+      })
+      .then(() => {
+        this.close();
+      })
+      .then(() => {
+        this.api.getAllUserArticles()
+          .then((res) => {
+            localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`)
+          })
+          .catch((err) => {
+            throw err.message;
+          });
+      })
+      .catch((err) => {
+        this.login.setServerError(err.message);
+      });
   }
 
   sendSignUpForm = (event) => {
     event.preventDefault();
     this.api.signup(this.signUp.getInfo())
-    .then(() => this._openSuccessPopup())
-    .catch((err) => {
-      this.signUp.setServerError(err.message);
-    });
+      .then(() => this._openSuccessPopup())
+      .catch((err) => {
+        this.signUp.setServerError(err.message);
+      });
   }
 
   openMainPopup = () => {
@@ -80,16 +81,16 @@ export default class Popup {
     this._setContent(this.signUp.form);
     this.signUp.clear();
     this.signUp.setEventListeners();
-    this.title.textContent = 'Регистрация';
-    this.popupLink.textContent = 'Войти';
-    this.popupLink.addEventListener('click',this.openSecondPopup);
+    this.title.textContent = this.messages.SIGNUP;
+    this.popupLink.textContent = this.messages.LINK_TO_LOGIN;
+    this.popupLink.addEventListener('click', this.openSecondPopup);
     this.signUpForm.addEventListener('submit', this.sendSignUpForm);
     this.open();
   }
 
   _openSuccessPopup = () => {
     this._clearContent();
-    this.title.textContent = 'Пользователь успешно зарегистрирован!';
+    this.title.textContent = this.messages.SIGNUP_SUCCESS;
     this.popupLink.classList.add('popup__link_type_success');
   }
 
@@ -102,16 +103,16 @@ export default class Popup {
     this._setContent(this.login.form);
     this.login.clear();
     this.login.setEventListeners();
-    this.title.textContent = 'Вход';
-    this.popupLink.textContent = 'Зарегистрироваться';
-    this.popupLink.addEventListener('click',this.openMainPopup);
+    this.title.textContent = this.messages.LOGIN;
+    this.popupLink.textContent = this.messages.LINK_TO_SIGNUP;
+    this.popupLink.addEventListener('click', this.openMainPopup);
     this.loginForm.addEventListener('submit', this.sendLoginForm);
     this.open();
   }
 
-    _clearContent = () => {
+  _clearContent = () => {
     const form = this.container.querySelector('form');
-    if(form) {
+    if (form) {
       form.remove();
     }
   }
@@ -125,4 +126,4 @@ export default class Popup {
     window.removeEventListener('keydown', this._closeByEsc);
     this.closeButton.removeEventListener('click', this.close);
   }
-}
+};

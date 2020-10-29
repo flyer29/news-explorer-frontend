@@ -9,58 +9,74 @@ import Search from './js/components/Search';
 import NewsApi from './js/api/NewsApi';
 import NewsCardList from './js/components/NewsCardList';
 import checkSavedArticles from './js/utils/checkSavedArticles';
-import utils from './js/utils/utils';
+import getTo from './js/utils/getTo';
+import getFrom from './js/utils/getFrom';
+import constants from './js/constants/constants';
 
 (function () {
-  const root = document.querySelector('.popup');
-  const loginPopupTemplate = document.querySelector('.login');
-  const signUpPopupTemplate = document.querySelector('.signup');
-  const cardTemplate = document.querySelector('.card');
-  const searchElement = document.querySelector('.search');
-  const headerElement = document.querySelector('.header');
-  const logoutButton = headerElement.querySelector('.button_logout');
-  const headerBurger = headerElement.querySelector('.header__button');
-  const authorizationButton = headerElement.querySelector('.button_authorization');
-  const searchContainer = document.querySelector('.search__container');
-  const formOfSearch = document.querySelector('.search__form');
-  const searchResults = document.querySelector('.search-results');
-  const cardsContainer = document.querySelector('.search-results__container');
-  const { getFrom, getTo } = utils;
+  const {
+    validatorMessages,
+    popupMessages,
+    searchErrorMessages,
+    preloaderElement,
+    notFoundElement,
+    cardsListConfig,
+    defaultImage,
+    mainApiConfig,
+    newsApiConfig,
+    mainPageDOM,
+  } = constants;
 
-
-  const cardsAmount = 3;
-  const defaultImage = './images/glass.png';
-
-  const mainApiConfig = {
-    baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.mynewsapp.tk',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  const newsApiConfig = {
-    domen: process.env.NODE_ENV === 'development' ? 'http://newsapi.org/' : 'https://nomoreparties.co/news/',
-    apiKey: 'a99a8e317b0f460593fb8974cb00701e',
-    from: 7,
-    to: new Date(),
-    pageSize: process.env.NODE_ENV === 'development' ? 12 : 100,
-  };
+  const {
+    root,
+    loginPopupTemplate,
+    signUpPopupTemplate,
+    cardTemplate,
+    searchElement,
+    headerElement,
+    logoutButton,
+    headerBurger,
+    authorizationButton,
+    searchContainer,
+    formOfSearch,
+    searchResults,
+    cardsContainer,
+  } = mainPageDOM;
 
   const mainApi = new MainApi(mainApiConfig);
   const newsApi = new NewsApi(newsApiConfig, getFrom, getTo);
-  const card = new NewsCard(cardTemplate, defaultImage, cardsContainer, mainApi);
-  const createNewCard = (...arg) => new NewsCard(cardTemplate, defaultImage, cardsContainer, mainApi, checkSavedArticles).create(...arg);
-  const newsCardList = new NewsCardList(createNewCard, cardsContainer, searchResults, cardsAmount, card);
-  const searchForm = new SearchForm(searchContainer, mainApi);
-  const loginForm = new Form(loginPopupTemplate, mainApi);
-  const signUpForm = new Form(signUpPopupTemplate, mainApi);
-  const search = new Search(searchElement, newsApi, newsCardList);
+  const card = new NewsCard(
+    cardTemplate,
+    defaultImage,
+    cardsContainer,
+    mainApi,
+    checkSavedArticles,
+  );
+  const createNewCard = (...arg) => new NewsCard(
+    cardTemplate,
+    defaultImage,
+    cardsContainer,
+    mainApi,
+    checkSavedArticles,
+  ).create(...arg);
+  const newsCardList = new NewsCardList(
+    createNewCard,
+    cardsContainer,
+    searchResults,
+    cardsListConfig,
+    card,
+    preloaderElement,
+    notFoundElement,
+  );
+  const searchForm = new SearchForm(searchContainer, validatorMessages);
+  const loginForm = new Form(loginPopupTemplate, mainApi, validatorMessages);
+  const signUpForm = new Form(signUpPopupTemplate, mainApi, validatorMessages);
+  const search = new Search(searchElement, newsApi, newsCardList, searchErrorMessages, searchResults);
   const header = new Header(headerElement, mainApi, card);
-
-  const popup = new Popup(root, signUpForm, loginForm, mainApi, header, card);
+  const popup = new Popup(root, signUpForm, loginForm, mainApi, header, card, popupMessages);
 
   mainApi.getUserData()
     .then((res) => {
-
       localStorage.setItem('user', `${JSON.stringify(res.data)}`);
       const props = {
         isLoggedIn: true,
@@ -68,30 +84,19 @@ import utils from './js/utils/utils';
       };
       header.render(props);
     })
-    /* if (localStorage.getItem('articles')) {
-        newsCardList.renderResults();
-    } */
-    .catch((err) => {
-      /* localStorage.removeItem('user');
-      localStorage.removeItem('userArticles'); */
-      return err;
-    });
+    .catch((err) => err.message);
 
   mainApi.getAllUserArticles()
     .then((res) => {
       localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
     })
     .then(() => {
-      newsCardList.renderResults();
+      if (localStorage.getItem('articles')) {
+        newsCardList.renderResults();
+      }
     })
-    .catch((err) => {
-      console.log(err.message);
-      // localStorage.removeItem('userArticles');
-    });
+    .catch((err) => err.message);
 
-
-  /* checkSavedArticles(); */
-  // const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
   authorizationButton.addEventListener('click', popup.openMainPopup);
   headerBurger.addEventListener('click', header.openMenu);
   logoutButton.addEventListener('click', header.logout);

@@ -1,30 +1,35 @@
 export default class NewsCardList {
-  constructor(createCardFunction, element, container, cardsAmount, card) {
+  constructor(createCardFunction, element, container, cardListConfig, card, preloader, notFound) {
     this.container = container;
-    this.amount = cardsAmount;
+    this.cardListConfig = cardListConfig;
+    this.amount = this.cardListConfig.cardsAmount;
+    this.iteration = this.cardListConfig.iteration;
     this.card = card;
-    this.preloader = document.querySelector('.loader');
-    this.notFound = document.querySelector('.not-found');
+    this.preloader = preloader;
+    this.notFound = notFound;
     this.errorMessage = this.notFound.querySelector('.not-found__message');
     this.createCardFunction = createCardFunction;
     this.element = element;
     this.button = this.container.querySelector('.button_more');
-    this.iteration = 0;
   }
 
   renderResults = () => {
-    const articles = JSON.parse(localStorage.getItem('articles'));
-    const part = articles.splice(this.amount * this.iteration, this.amount);
-    if ((this.amount % part.length > 1)  || (this.amount * this.iteration === articles.length)) {
-      this._addCard(part);
-      this.button.classList.add('hidden');
-      this.iteration = 0;
+    if (JSON.parse(localStorage.getItem('articles')).length === 0) {
+      return;
     } else {
-      this._addCard(part);
+      const articles = JSON.parse(localStorage.getItem('articles'));
+      const part = articles.splice(this.amount * this.iteration, this.amount);
+      if ((this.amount % part.length > 1) || (this.amount * this.iteration === articles.length)) {
+        this._addCard(part);
+        this.button.classList.add('hidden');
+        this.iteration = 0;
+      } else {
+        this._addCard(part);
+      }
+      this.element.parentNode.classList.remove('hidden');
+      this.card.renderIcon();
+      this.setListener();
     }
-    this.element.parentNode.classList.remove('hidden');
-    this.card.renderIcon();
-    this.setListener();
   }
 
   clearContent = () => {
@@ -35,7 +40,7 @@ export default class NewsCardList {
   }
 
   showButton = () => {
-      this.button.classList.remove('hidden');
+    this.button.classList.remove('hidden');
   }
 
   renderLoader = (isLoad) => {
@@ -66,4 +71,4 @@ export default class NewsCardList {
   setListener = () => {
     this.button.addEventListener('click', this._showMore);
   }
-}
+};

@@ -4,59 +4,60 @@ import MainApi from '../js/api/MainApi';
 import SavedNewsCard from '../js/components/SavedNewsCard';
 import SavedNewsCardList from '../js/components/SavedNewsCardList';
 import ArticlesData from '../js/components/ArticlesData';
+import sortedKyewords from '../js/utils/sortKeywords';
+import constants from '../js/constants/constants';
 
-const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://api.mynewsapp.tk';
-const config = {
-  baseUrl: `${baseUrl}`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-};
+(function () {
+  const {
+    mainApiConfig,
+    articlesPageDOM,
+  } = constants;
+  const {
+    header,
+    logoutButton,
+    headerBurger,
+    cardTemplate,
+    cardsContainer,
+    articlesInfo,
+  } = articlesPageDOM;
 
-const header = document.querySelector('.header');
-const logoutButton = header.querySelector('.button_logout');
-const headerBurger = header.querySelector('.header__button');
-const cardTemplate = document.querySelector('.card-template');
-const cardsContainer = document.querySelector('.search-results__container');
-const articlesInfo = document.querySelector('.articles');
-const articlesData = new ArticlesData(articlesInfo);
-const mainApi = new MainApi(config);
-const headerArticles = new HeaderArticles(header, mainApi);
+  const articlesData = new ArticlesData(articlesInfo, sortedKyewords);
+  const mainApi = new MainApi(mainApiConfig);
+  const headerArticles = new HeaderArticles(header, mainApi);
+  const card = new SavedNewsCard(cardTemplate, cardsContainer, mainApi, articlesData);
+  const createNewCard = (...arg) => new SavedNewsCard(
+    cardTemplate,
+    cardsContainer,
+    mainApi,
+    articlesData,
+  ).create(...arg);
+  const cardList = new SavedNewsCardList(cardsContainer, createNewCard, card);
 
-const card = new SavedNewsCard(cardTemplate, cardsContainer, mainApi, articlesData);
-const createNewCard = (...arg) => new SavedNewsCard(
-  cardTemplate,
-  cardsContainer,
-  mainApi,
-  articlesData,
-).create(...arg);
-const cardList = new SavedNewsCardList(cardsContainer, createNewCard, card);
+  mainApi.getUserData()
+    .then((res) => {
+      localStorage.setItem('user', `${JSON.stringify(res.data)}`);
+      const props = {
+        isLoggedIn: true,
+        userName: JSON.parse(localStorage.getItem('user')).name,
+      };
+      headerArticles.render(props);
+    })
+    .catch(() => {
+      window.location.href = '../index.html';
+    });
 
+  mainApi.getAllUserArticles()
+    .then((res) => {
+      localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
+    })
+    .then(() => {
+      cardList.renderArticles();
+    })
+    .catch((err) => {
+      throw err;
+    });
 
-mainApi.getUserData()
-  .then((res) => {
-    localStorage.setItem('user', `${JSON.stringify(res.data)}`);
-    const props = {
-      isLoggedIn: true,
-      userName: JSON.parse(localStorage.getItem('user')).name,
-    };
-    headerArticles.render(props);
-  })
-  .catch(() => {
-    window.location.href = '../index.html';
-  });
-
-mainApi.getAllUserArticles()
-  .then((res) => {
-    localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
-  })
-  .then(() => {
-    cardList.renderArticles();
-  })
-  .catch((err) => {
-    throw err;
-  });
-
-articlesData.renderUserInfo();
-headerBurger.addEventListener('click', headerArticles.openMenu);
-logoutButton.addEventListener('click', headerArticles.logout);
+  articlesData.renderUserInfo();
+  headerBurger.addEventListener('click', headerArticles.openMenu);
+  logoutButton.addEventListener('click', headerArticles.logout);
+}());

@@ -23,6 +23,7 @@ const mainApiConfig = {
   },
 };
 const newsApiConfig = {
+  domen: process.env.NODE_ENV === 'development' ? 'http://newsapi.org/' : 'https://nomoreparties.co/news/',
   apiKey: 'a99a8e317b0f460593fb8974cb00701e',
   from: 7,
   to: new Date(),

@@ -125,9 +125,9 @@ export default class MainApi {
       .catch((err) => {
         throw err;
       });
-   }
+  }
 
-   getAllUserArticles = () =>  {
+  getAllUserArticles = () => {
     return fetch(`${this.url}/articles`, {
         method: 'GET',
         headers: this.headers,
@@ -142,9 +142,6 @@ export default class MainApi {
       })
       .catch((err) => {
         throw err;
-    });
+      });
   }
-}
-
-
-
+};

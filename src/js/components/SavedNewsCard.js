@@ -1,5 +1,4 @@
 import createCardDate from '../utils/createCardDate';
-/* import renderUserInfo from '../utils/renderUserInfo'; */
 
 export default class SavedNewsCard {
   constructor(element, container, api, articlesData) {
@@ -62,4 +61,8 @@ export default class SavedNewsCard {
   _setListener = () => {
     this.trashButton.addEventListener('click', this._deleteCard);
   }
+
+
 }
+
+
