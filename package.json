@@ -7,7 +7,7 @@
     "start": "cross-env NODE_ENV=production rimraf dist && webpack --mode production",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
     "ghpages": "cross-env NODE_ENV=production gh-pages -d dist",
-    "deploy": "npm run start && scp -r ./dist/* flyer29@84.201.134.55:/home/flyer29/news-explorer-frontend"
+    "deploy": "npm run start && scp -r ./dist/* flyer29@178.154.225.225:/home/flyer29/news-explorer-frontend"
   },
   "repository": {
     "type": "git",
