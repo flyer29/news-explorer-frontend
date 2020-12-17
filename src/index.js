@@ -13,93 +13,92 @@ import getTo from './js/utils/getTo';
 import getFrom from './js/utils/getFrom';
 import constants from './js/constants/constants';
 
-(function () {
-  const {
-    validatorMessages,
-    popupMessages,
-    searchErrorMessages,
-    preloaderElement,
-    notFoundElement,
-    cardsListConfig,
-    defaultImage,
-    mainApiConfig,
-    newsApiConfig,
-    mainPageDOM,
-  } = constants;
 
-  const {
-    root,
-    loginPopupTemplate,
-    signUpPopupTemplate,
-    cardTemplate,
-    searchElement,
-    headerElement,
-    logoutButton,
-    headerBurger,
-    authorizationButton,
-    searchContainer,
-    formOfSearch,
-    searchResults,
-    cardsContainer,
-  } = mainPageDOM;
+const {
+  validatorMessages,
+  popupMessages,
+  searchErrorMessages,
+  preloaderElement,
+  notFoundElement,
+  cardsListConfig,
+  defaultImage,
+  mainApiConfig,
+  newsApiConfig,
+  mainPageDOM,
+} = constants;
 
-  const mainApi = new MainApi(mainApiConfig);
-  const newsApi = new NewsApi(newsApiConfig, getFrom, getTo);
-  const card = new NewsCard(
-    cardTemplate,
-    defaultImage,
-    cardsContainer,
-    mainApi,
-    checkSavedArticles,
-  );
-  const createNewCard = (...arg) => new NewsCard(
-    cardTemplate,
-    defaultImage,
-    cardsContainer,
-    mainApi,
-    checkSavedArticles,
-  ).create(...arg);
-  const newsCardList = new NewsCardList(
-    createNewCard,
-    cardsContainer,
-    searchResults,
-    cardsListConfig,
-    card,
-    preloaderElement,
-    notFoundElement,
-  );
-  const searchForm = new SearchForm(searchContainer, validatorMessages);
-  const loginForm = new Form(loginPopupTemplate, mainApi, validatorMessages);
-  const signUpForm = new Form(signUpPopupTemplate, mainApi, validatorMessages);
-  const search = new Search(searchElement, newsApi, newsCardList, searchErrorMessages, searchResults);
-  const header = new Header(headerElement, mainApi, card);
-  const popup = new Popup(root, signUpForm, loginForm, mainApi, header, card, popupMessages);
+const {
+  root,
+  loginPopupTemplate,
+  signUpPopupTemplate,
+  cardTemplate,
+  searchElement,
+  headerElement,
+  logoutButton,
+  headerBurger,
+  authorizationButton,
+  searchContainer,
+  formOfSearch,
+  searchResults,
+  cardsContainer,
+} = mainPageDOM;
 
-  mainApi.getUserData()
-    .then((res) => {
-      localStorage.setItem('user', `${JSON.stringify(res.data)}`);
-      const props = {
-        isLoggedIn: true,
-        userName: JSON.parse(localStorage.getItem('user')).name,
-      };
-      header.render(props);
-    })
-    .catch((err) => err.message);
+const mainApi = new MainApi(mainApiConfig);
+const newsApi = new NewsApi(newsApiConfig, getFrom, getTo);
+const card = new NewsCard(
+  cardTemplate,
+  defaultImage,
+  cardsContainer,
+  mainApi,
+  checkSavedArticles,
+);
+const createNewCard = (...arg) => new NewsCard(
+  cardTemplate,
+  defaultImage,
+  cardsContainer,
+  mainApi,
+  checkSavedArticles,
+).create(...arg);
+const newsCardList = new NewsCardList(
+  createNewCard,
+  cardsContainer,
+  searchResults,
+  cardsListConfig,
+  card,
+  preloaderElement,
+  notFoundElement,
+);
+const searchForm = new SearchForm(searchContainer, validatorMessages);
+const loginForm = new Form(loginPopupTemplate, mainApi, validatorMessages);
+const signUpForm = new Form(signUpPopupTemplate, mainApi, validatorMessages);
+const search = new Search(searchElement, newsApi, newsCardList, searchErrorMessages, searchResults);
+const header = new Header(headerElement, mainApi, card);
+const popup = new Popup(root, signUpForm, loginForm, mainApi, header, card, popupMessages);
 
-  mainApi.getAllUserArticles()
-    .then((res) => {
-      localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
-    })
-    .then(() => {
-      if (localStorage.getItem('articles')) {
-        newsCardList.renderResults();
-      }
-    })
-    .catch((err) => err.message);
+mainApi.getUserData()
+  .then((res) => {
+    localStorage.setItem('user', `${JSON.stringify(res.data)}`);
+    const props = {
+      isLoggedIn: true,
+      userName: JSON.parse(localStorage.getItem('user')).name,
+    };
+    header.render(props);
+  })
+  .catch((err) => err.message);
 
-  authorizationButton.addEventListener('click', popup.openMainPopup);
-  headerBurger.addEventListener('click', header.openMenu);
-  logoutButton.addEventListener('click', header.logout);
-  searchForm.setEventListeners();
-  formOfSearch.addEventListener('submit', search.getArticles);
-}());
+mainApi.getAllUserArticles()
+  .then((res) => {
+    localStorage.setItem('userArticles', `${JSON.stringify(res.data)}`);
+  })
+  .then(() => {
+    if (localStorage.getItem('articles')) {
+      newsCardList.renderResults();
+    }
+  })
+  .catch((err) => err.message);
+
+authorizationButton.addEventListener('click', popup.openMainPopup);
+headerBurger.addEventListener('click', header.openMenu);
+logoutButton.addEventListener('click', header.logout);
+searchForm.setEventListeners();
+formOfSearch.addEventListener('submit', search.getArticles);

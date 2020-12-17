@@ -31,6 +31,10 @@ export default class Popup {
     this._removeEventListeners();
   }
 
+  _closeByClickEveryWhere = (event) => {
+    event.target.classList.contains('popup') && this.close();
+  }
+
   _closeByEsc(event) {
     if (event.keyCode === 27) {
       this.close();
@@ -39,6 +43,7 @@ export default class Popup {
 
   sendLoginForm = (event) => {
     event.preventDefault();
+    this._makeSubmitButtonDisabled(this.loginForm);
     this.api.signin(this.login.getInfo())
       .then((res) => {
         localStorage.setItem('user', `${JSON.stringify(res)}`)
@@ -68,6 +73,7 @@ export default class Popup {
 
   sendSignUpForm = (event) => {
     event.preventDefault();
+    this._makeSubmitButtonDisabled(this.signUpForm);
     this.api.signup(this.signUp.getInfo())
       .then(() => this._openSuccessPopup())
       .catch((err) => {
@@ -78,7 +84,8 @@ export default class Popup {
   openMainPopup = () => {
     this._clearContent();
     this.popupLink.removeEventListener('click', this.openMainPopup);
-    this._setContent(this.signUp.form);
+    this._setContent(this.signUpForm);
+    this._makeSubmitButtonDisabled(this.signUpForm);
     this.signUp.clear();
     this.signUp.setEventListeners();
     this.title.textContent = this.messages.SIGNUP;
@@ -100,7 +107,8 @@ export default class Popup {
     };
     this._clearContent();
     this.popupLink.removeEventListener('click', this.openSecondPopup);
-    this._setContent(this.login.form);
+    this._setContent(this.loginForm);
+    this._makeSubmitButtonDisabled(this.loginForm);
     this.login.clear();
     this.login.setEventListeners();
     this.title.textContent = this.messages.LOGIN;
@@ -119,11 +127,17 @@ export default class Popup {
 
   _setEventListeners = () => {
     window.addEventListener('keydown', this._closeByEsc);
+    this.element.addEventListener('click', this._closeByClickEveryWhere);
     this.closeButton.addEventListener('click', this.close);
   }
 
   _removeEventListeners = () => {
     window.removeEventListener('keydown', this._closeByEsc);
+    this.element.removeEventListener('click', this._closeByClickEveryWhere);
     this.closeButton.removeEventListener('click', this.close);
+  }
+
+  _makeSubmitButtonDisabled = (form) => {
+    form.querySelector('.popup__button').setAttribute('disabled', 'true');
   }
 };
